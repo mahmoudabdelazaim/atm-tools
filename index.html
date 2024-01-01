@@ -1,0 +1,1169 @@
+																<!--By mahmoud abdelazeem-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="styles.css">
+</head> 
+<body onload="startTime()">
+<!--clcok-->
+
+
+<!----------------------------------------------------------------------------Code Start--------------------------------------------------------------------------------------------->
+		<!--log in div--> 
+		<div id="ae-form">
+		<!--beginning of the DrobMenu-->
+		<hr style="height:43px; visibility:hidden;" />
+		<!--------------------NBE data input main DrobMenu-------------------->
+		<div>
+		<!-- for all accounts Data generators -->
+		
+		
+		
+		
+		
+		
+		<div id="content_1" class="hide">
+		<br>
+		NBE Data Batch File Generator
+		<form action="#" onsubmit="NBE();return false">  
+		<table border="0" style="border-spacing: 3px;" width="145px">
+		<tr><td colspan="2"><div class="nowarb"><input type="text" pattern="[0-9]{3,3}" inputmode="numeric" required="required" id="NBE_TID1" name="NBE_TID1" maxlength="3" placeholder="Uno"  style="width: 40px;">-<input pattern="[0-9]{8,8}" inputmode="numeric" required="required" type="text" id="NBE_TID2" name="NBE_TID2" maxlength="8" placeholder="Terminal ID"  style="width: 100px;"></div></td></tr>
+		<tr><td colspan="2"><input pattern="\d+" inputmode="numeric" type="text" id="NBE_PN" name="NBE_PN" required="required" maxlength="6" placeholder="Port No."  style="width: 70px;"><span style="height:20px; visibility:hidden;">.</span><input pattern="\d+" inputmode="numeric" type="text" id="NBE_LP" name="NBE_LP" maxlength="6" placeholder="Local Prt"  style="width: 70px;"></td></tr>
+		
+		<tr><td colspan="2"><input required="required" pattern="[0-9.]{7,15}" inputmode="numeric" type="text" id="NBE_IP_1" name="NBE_IP_1" maxlength="11" placeholder="ATM IP" style="width: 90px;">.<input required="required" pattern="[0-9.]{1,3}" inputmode="numeric" type="text" id="NBE_IP_2" name="NBE_IP_2" maxlength="3" style="width: 50px;"></td></tr>
+
+		<tr><td colspan="2"><div class="nowrap"><input required="required" pattern="[0-9.]{7,15}" inputmode="numeric" type="text" id="NBE_Subnetmask_1" name="NBE_Subnetmask_1" maxlength="15" value="255.255.255" placeholder="subnet mask" style="width: 90px;">.<input required="required" pattern="[0-9.]{1,3}" inputmode="numeric" type="text" id="NBE_Subnetmask_2" name="NBE_Subnetmask_2" maxlength="3" style="width: 50px;"></div></td></tr>
+
+		<tr><td colspan="2"><input required="required" pattern="[0-9.]{7,15}" inputmode="numeric" type="text" id="NBE_Gateway_1" name="NBE_Gateway_1" maxlength="11" placeholder="GateWay" style="width: 90px;">.<input required="required" pattern="[0-9.]{1,3}" inputmode="numeric" type="text" id="NBE_Gateway_2" name="NBE_Gateway_2" maxlength="3" style="width: 50px;"></td></tr>
+		<tr><td colspan="2"><input inputmode="numeric" type="text" id="NBE_RPeer" name="NBE_RPeer" placeholder="Remote Peer" style="width: 145px;" value="10.40.12.25"> </td></tr>
+
+		
+		<tr><td width="50px" rowspan="4" align="left" valign="top"><div class="blink_me"><div class="NBE"><span style="opacity: 0;">.</div></div></td><td colspan="2"><input pattern="\d+" required="required" inputmode="numeric" type="text" id="NBE_Val1" name="NBE_Val1" maxlength="3" placeholder="Value 1" style="width: 90px;"></td></tr>
+		<tr><td><input pattern="\d+" required="required" inputmode="numeric" type="text" id="NBE_Val2" name="NBE_Val2" maxlength="3" placeholder="Value 2" style="width: 90px;"></td></tr>
+		<tr><td><input pattern="\d+" inputmode="numeric" required="required" type="text" id="NBE_Val3" name="NBE_Val3" maxlength="3" placeholder="Value 3" style="width: 90px;"></td></tr>
+		<tr><td><input pattern="\d+" inputmode="numeric" required="required" type="text" id="NBE_Val4" name="NBE_Val4" maxlength="3" placeholder="Value 4" style="width: 90px;"></td></tr>
+		<tr><td colspan="2"><div><select id="NBE_LanName"  required="required" style="width: 145px;"><option value="">LAN Name</option><option value="Ethernet">Ethernet</option><option value="Ethernet1">Ethernet1</option><option value="Ethernet2">Ethernet2</option><option value="Ethernet3">Ethernet3</option><option value="Wi-Fi">Wi-Fi</option></select></div></td></tr>
+		<tr><td colspan="2"><div><select id="NBE_DisLanName"  required="required" style="width: 145px;"><option value="">Disable LAN </option><option value="Ethernet">Ethernet</option><option value="Ethernet1">Ethernet1</option><option value="Ethernet2">Ethernet2</option><option value="Ethernet3">Ethernet3</option><option value="Wi-Fi">Wi-Fi</option></select></div></td></tr>
+		<tr><td colspan="2"><div><select id="NBE_Shutdown"  required="required" style="width: 145px;"><option value="">ATM Action after bat Run</option><option value="">NO thing</option><option value="shutdown.exe /r /t 05">Reboot</option><option value="shutdown /s /t 05">shutdown</option></select></div></td></tr>
+		<tr><td colspan="2" align="center"><input type="hidden" id="NBE_PCname" name="NBE_PCname"/><input type = "submit" value="submit" style="width: 145px;"></td></tr>
+		</table>
+		</form>
+		</div>
+		
+		<!--------------------BM data input main DrobMenu-------------------->		
+		
+        <div id="content_2" class="hide">
+		<br>
+		NBE Data Batch File Generator
+		<form action="#" onsubmit="BM();return false">  
+		<table border="0" style="border-spacing: 3px;" width="145px">
+		<tr><td colspan="2"><div class="nowarb"><input style="width: 70px;" pattern="[0-9]{4,4}" inputmode="numeric" required="required" type="text" id="BM_TID1" name="BM_TID1" maxlength="4" placeholder="XXXX"><b>-</b><input style="width: 70px;" type="text" id="BM_TID2" name="BM_TID2" inputmode="numeric" pattern="[0-9]{4,4}" required="required" maxlength="4" placeholder="XXXX"></div></td></tr>
+		<tr><td colspan="2"><input type="text" id="BM_PN" name="BM_PN" inputmode="numeric"  pattern="\d+" required="required" maxlength="6" placeholder="Port Number" style="width: 145px;"></td></tr>
+		<tr><td colspan="2"><input required="required" pattern="[0-9.]{7,15}" inputmode="numeric" type="text" id="BM_IP" name="BM_IP" maxlength="15" placeholder="ATM IP" style="width: 145px;"></td></tr>
+		<tr><td colspan="2"><input required="required" pattern="[0-9.]{7,15}" inputmode="numeric" type="text" id="BM_Subnetmask_1" name="BM_Subnetmask_1" maxlength="15" value="255.255.255" placeholder="subnet mask" style="width: 90px;">.<input required="required" pattern="[0-9.]{1,3}" inputmode="numeric" type="text" id="BM_Subnetmask_2" name="BM_Subnetmask_2" maxlength="3" style="width: 50px;"></td></tr>
+		<tr><td colspan="2"><input required="required" pattern="[0-9.]{7,15}"  inputmode="numeric" type="text" id="BM_Gateway" name="BM_Gateway" maxlength="15" placeholder="GateWay" style="width: 145px;"></td></tr>
+		<tr><td width="50" rowspan="4" align="left" valign="top"><div class="blink_me"><div class="BM"><span style="opacity: 0;">.</div></div></td><td><input pattern="\d+" inputmode="numeric" required="required" type="text" id="BM_Val1" name="BM_Val1" maxlength="3" placeholder="Value 1" style="width: 90px;"></td></tr>
+		<tr><td><input type="text" inputmode="numeric" id="BM_Val2" name="BM_Val2" pattern="\d+" required="required" maxlength="3" placeholder="Value 2" style="width: 90px;"></td></tr>
+		<tr><td><input type="text" inputmode="numeric" id="BM_Val3" name="BM_Val3" pattern="\d+" required="required" maxlength="3" placeholder="Value 3" style="width: 90px;"></td></tr>
+		<tr><td><input pattern="\d+" inputmode="numeric" required="required" type="text" id="BM_Val4" name="BM_Val4" maxlength="3" placeholder="Value 4" style="width: 90px;"></td></tr>
+<tr><td colspan="2" class="city"><div onclick="show_hide(this)"><b>Additional Data &#8681; </b></div><div id="answer">
+		<input pattern="\d+" inputmode="numeric" type="text" id="BM_LP" name="BM_LP" maxlength="6" placeholder="Local Port" style="width: 145px;"><br>
+		<input inputmode="numeric" type="text" id="BM_RPeer" name="BM_RPeer" value="oasis.staff.banquemisr.bank" placeholder="Remote Peer" style="width: 145px;"><br>
+		<input required="required" value="Ethernet" type="text" id="BM_LanName" name="BM_LanName" value="Ethernet" placeholder="LAN name" style="width: 145px;">
+</div></td></tr>
+		<tr><td colspan="2"><div><select style="width: 145px;" id="BM_Shutdown" required="required"><option value="">ATM Action after bat Run</option><option value="">NO thing</option><option value="shutdown.exe /r /t 05">Reboot</option><option value="shutdown /s /t 05">shutdown</option></select></div></td></tr>
+		<tr><td colspan="2" align="center"><input type="hidden" id="BM_PCname" name="BM_PCname"/><input style="width: 145px;" type = "submit" value="submit"></td></tr>		
+		</table>
+		</form>
+		</div>
+		
+		<!--------------------ENPO data input main DrobMenu-------------------->
+		
+		<div id="content_3" class="hide">
+		<br>
+		NBE Data Batch File Generator
+		<form action="#" onsubmit="ENPO();return false">  
+		<table border="0" style="border-spacing: 3px;" width="145px">
+		<tr><td colspan="2"><input style="width: 145px;" type="text" required="required" id="ENPO_TID2" name="ENPO_TID2" placeholder="Terminal ID"></td></tr>
+		<tr><td colspan="2"><input style="width: 145px;" type="text" required="required" inputmode="numeric" pattern="\d+" id="ENPO_PN" name="ENPO_PN" maxlength="6" placeholder="Port Number"></td></tr>
+		<tr><td colspan="2"><input style="width: 145px;" inputmode="numeric" required="required" pattern="\d+" type="text" id="ENPO_TID1" name="ENPO_TID1" maxlength="9" placeholder="Cam Machine No."></td></tr>
+		<tr><td colspan="2"><input style="width: 145px;" type="text" pattern="[0-9.]{7,15}" inputmode="numeric" required="required" id="ENPO_IP" name="ENPO_IP" maxlength="15" placeholder="ATM IP"></td></tr>
+		<tr><td colspan="2"><div class="nowrap"></div><input type="text"  pattern="[0-9.]{7,15}" inputmode="numeric" required="required" id="ENPO_Subnetmask_1" name="ENPO_Subnetmask_1" value="255.255.255" maxlength="15" placeholder="subnet mask" style="width: 90px;">.<input type="text"  pattern="[0-9.]{1,3}" inputmode="numeric" required="required" id="ENPO_Subnetmask_2" name="ENPO_Subnetmask_2" maxlength="3" style="width: 50px;"></td></tr>
+		<tr><td colspan="2"><input style="width: 145px;" type="text"  pattern="[0-9.]{7,15}" inputmode="numeric" required="required" id="ENPO_Gateway" name="ENPO_Gateway" maxlength="15" placeholder="Gateway"></td></tr>
+		<tr><td width="50" rowspan="4" align="left" valign="top"><div class="blink_me"><div class="ENPO"><span style="opacity: 0;">.</div></div></td><td><input style="width: 90px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="ENPO_Val1" name="ENPO_Val1" maxlength="3" placeholder="Value 1"></td></tr>
+		<tr><td><input pattern="\d+" inputmode="numeric" required="required" type="text" id="ENPO_Val2" name="ENPO_Val2" maxlength="3" placeholder="Value 2" style="width: 90px;"></td></tr>
+		<tr><td><input pattern="\d+" inputmode="numeric" required="required" type="text" id="ENPO_Val3" name="ENPO_Val3" maxlength="3" placeholder="Value 3" style="width: 90px;"></td></tr>
+		<tr><td><input pattern="\d+" inputmode="numeric" required="required" type="text" id="ENPO_Val4" name="ENPO_Val4" maxlength="3" placeholder="Value 4" style="width: 90px;"></td></tr>
+
+<tr><td colspan="3" class="city"><div onclick="show_hide(this)"><b>Additional Data  &#8681; </b></div><div id="answer">
+		<input pattern="\d+" inputmode="numeric" type="text" id="ENPO_LP" name="ENPO_LP" maxlength="6" placeholder="Local Port" style="width: 145px;"><br>
+		<input inputmode="numeric" type="text" id="ENPO_RPeer" name="ENPO_RPeer" placeholder="Remote Peer" style="width: 145px;"><br>
+		<input type="text" required="required" id="ENPO_LanName" name="ENPO_LanName" value="Ethernet" placeholder="LAN Name" style="width: 145px;">
+</div></td></tr>
+		<tr><td colspan="2"><div><select style="width: 145px;" id="ENPO_Shutdown" required="required"><option value="">ATM Action After running Batch file</option><option value="">NO thing</option><option value="shutdown.exe /r /t 05">Reboot</option><option value="shutdown /s /t 05">shutdown</option></select></div></td></tr>
+		<tr><td colspan="2" align="center"><input type="hidden" id="ENPO_PCname" name="ENPO_PCname"/><input style="width: 145px;" type = "submit" value="submit"></td></tr>
+		</table>
+		</form>
+		</div>
+		
+		<!--------------------NI data input main DrobMenu-------------------->
+		
+		<div id="content_4" class="hide">
+		<br>
+		NBE Data Batch File Generator
+		<form action="#" onsubmit="NI();return false">  
+		<table border="0" style="border-spacing: 3px;" width="145px">
+		<tr><td colspan="2"><div class="unwrap"><input  style="width: 70px;"  type="text" required="required" id="NI_UNO" name="NI_UNO" onkeyup="this.value = this.value.toUpperCase();" placeholder="BOAW">&nbsp;<input style="width: 71px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="NI_TID" name="NI_TID" placeholder="xxx"></div></td></tr>
+		<tr><td colspan="2"><input  style="width: 145px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="NI_PN" name="NI_PN" placeholder="Port Number"></td></tr>
+		<tr><td colspan="2"><input  style="width: 145px;" pattern="[0-9.]{7,15}" inputmode="numeric" required="required" type="text" id="NI_ATM_IP" name="NI_ATM_IP" placeholder="ATM IP"></td></tr>
+		<tr><td colspan="2"><div class="nowrap"></div><input type="text"  pattern="[0-9.]{7,15}" inputmode="numeric" required="required" id="NI_Subnetmask_1" name="NI_Subnetmask_1" value="255.255.255" maxlength="15" placeholder="subnet mask" style="width: 90px;">.<input type="text"  pattern="[0-9.]{1,3}" inputmode="numeric" required="required" id="NI_Subnetmask_2" name="NI_Subnetmask_2" maxlength="3" style="width: 50px;"></td></tr>
+		<tr><td colspan="2"><input  style="width: 145px;" pattern="[0-9.]{7,15}" inputmode="numeric" required="required" type="text" id="NI_Gateway" name="NI_Gateway" placeholder="Gateway"></td></tr>
+		<tr><td width="50" rowspan="4" align="left" valign="top"><marquee direction="down" width="50" height="95" style="border:0" scrollamount="1"><div class="EGB"><span style="opacity: 0;">.</div><br><br><br><br><div class="AWB"><span style="opacity: 0;">.</div><br><br><br><br><div class="BOA"><span style="opacity: 0;">.</div><br><br><br><br><div class="CAE"><span style="opacity: 0;">.</div><br><br><br><br><div class="ADIB"><span style="opacity: 0;">.</div></marquee></td><td><input style="width: 90px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="NI_Val1" name="NI_Val1" maxlength="3" placeholder="Value 1"></td></tr>
+		<tr><td><input style="width: 90px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="NI_Val2" name="NI_Val2" maxlength="3" placeholder="Value 2"></td></tr>
+		<tr><td><input style="width: 90px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="NI_Val3" name="NI_Val3" maxlength="3" placeholder="Value 3"></td></tr>
+		<tr><td colspan="2"><input style="width: 90px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="NI_Val4" name="NI_Val4" maxlength="3" placeholder="Value 4"></td></tr>
+<tr><td colspan="2" class="city"><div onclick="show_hide(this)"><b>Additional Data &#8681; </b></div><div id="answer">
+		<input style="width: 145px;" pattern="\d+" inputmode="numeric" type="text" id="NI_LP" name="NI_LP" maxlength="6" placeholder="Local Port"/><br>
+		<input style="width: 145px;" inputmode="numeric" type="text" id="NI_RPeer" name="NI_RPeer" placeholder="Remote Peer"><br>
+		<input style="width: 145px;" required="required" type="text" id="NI_LANname" name="NI_LANname" value="Ethernet" placeholder="LAN Name"><br>
+</div></td></tr>
+		<tr><td colspan="2"><div><select style="width: 145px;" id="NI_Shutdown" required="required"><option value="">ATM Action After running Batch file</option><option value="">NO thing</option><option value="shutdown.exe /r /t 05">Reboot</option><option value="shutdown /s /t 05">shutdown</option></select></div></td></tr>
+		<tr><td colspan="2" align="center"><input type="hidden" id="NI_PCname" name="NI_PCname"/><input style="width: 145px;" type = "submit" value="submit"></td></tr>		
+		</table>
+		</form>
+		</div>
+		
+		<!--------------------Other Accounts data input main DrobMenu-------------------->
+		
+        <div id="content_5" class="hide">
+		<br>
+		NBE Data Batch File Generator
+		<form action="#" onsubmit="OTHERS();return false">  
+		<table border="0"  style="border-spacing: 3px;" width="145px">
+		<tr><td colspan="2"><input  style="width: 145px;" required="required" type="text" id="OTHERS_TID" name="OTHERS_TID" placeholder="Terminal Id"></td></tr>
+		<tr><td colspan="2"><input  style="width: 145px;" type="text" id="OTHERS_ComputerName" name="Computer name" placeholder="Computer Name"></td></tr>
+		<tr><td colspan="2"><input  style="width: 145px;" type="text" id="OTHERS_UNO" name="OTHERS_UNO" placeholder="Cam Machine No."></td></tr>		
+		<tr><td colspan="2"><input  style="width: 145px;" pattern="\d+" inputmode="numeric" type="text" id="OTHERS_LP" name="OTHERS_LP" maxlength="6" placeholder="Local Port"/></td></tr>
+		<tr><td colspan="2"><input  style="width: 145px;" inputmode="numeric" type="text" id="OTHERS_RPeer" name="OTHERS_RPeer" placeholder="Remote Peer"></td></tr>
+		<tr><td colspan="2"><input  style="width: 145px;" inputmode="numeric" type="text" id="OTHERS_AtmID" name="OTHERS_AtmID" placeholder="ATM ID"></td></tr>
+		<tr><td colspan="2"><input  style="width: 145px;" type="text" id="OTHERS_LANname" name="OTHERS_LANname" value="Ethernet" placeholder="LAN Name"></td></tr>
+		<tr><td colspan="2"><input  style="width: 145px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="OTHERS_PN" name="OTHERS_PN" maxlength="6" placeholder="Port Number"></td></tr>
+		<tr><td colspan="2"><input  style="width: 145px;" pattern="[0-9.]{7,15}" inputmode="numeric" required="required" type="text" id="OTHERS_ATM_IP" name="OTHERS_ATM_IP" placeholder="ATM IP"></td></tr>
+		<tr><td colspan="2"><div class="nowrap"></div><input type="text"  pattern="[0-9.]{7,15}" inputmode="numeric" required="required" id="OTHERS_Subnetmask_1" name="OTHERS_Subnetmask_1" value="255.255.255" maxlength="15" placeholder="SubnetMask" style="width: 90px;">.<input type="text"  pattern="[0-9.]{1,3}" inputmode="numeric" required="required" id="OTHERS_Subnetmask_2" name="OTHERS_Subnetmask_2" maxlength="3" style="width: 50px;"></td></tr>
+		<tr><td colspan="2"><input style="width: 145px;" pattern="[0-9.]{7,15}" inputmode="numeric" required="required" type="text" id="OTHERS_Gateway" name="OTHERS_Gateway" placeholder="Gateway"></td></tr>
+		<tr><td width="50" rowspan="4" align="left" valign="top"><marquee direction="down" width="50" height="95" style="border:0" scrollamount="1"><div class="BDC"><span style="opacity: 0;">.</div><br><br><br><br><div class="ABE"><span style="opacity: 0;">.</div><br><br><br><br><div class="AB"><span style="opacity: 0;">.</div><br><br><br><br><div class="HDB"><span style="opacity: 0;">.</div><br><br><br><br><div class="CIB"><span style="opacity: 0;">.</div><br><br><br><br><div class="NBK"><span style="opacity: 0;">.</div><br><br><br><br><div class="QNB"><span style="opacity: 0;">.</div><br><br><br><br><div class="SAIB"><span style="opacity: 0;">.</div><br><br><br><br><div class="AIBK"><span style="opacity: 0;">.</div><br><br><br><br><div class="FIB"><span style="opacity: 0;">.</div></marquee></td>
+		<td colspan="2"><input style="width: 90px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="OTHERS_Val1" name="OTHERS_Val1" maxlength="3" placeholder="value 1"></td></tr>
+		<tr><td colspan="2"><input style="width: 90px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="OTHERS_Val2" name="OTHERS_Val2" maxlength="3" placeholder="value 2"></td></tr>
+		<tr><td colspan="2"><input style="width: 90px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="OTHERS_Val3" name="OTHERS_Val3" maxlength="3" placeholder="value 3"></td></tr>
+		<tr><td colspan="2"><input style="width: 90px;" pattern="\d+" inputmode="numeric" required="required" type="text" id="OTHERS_Val4" name="OTHERS_Val4" maxlength="3" placeholder="value 4"></td></tr>
+
+		<tr><td colspan="3"><div><select  style="width: 145px;" id="OTHERS_Shutdown" required="required"><option value="">ATM Action After running Batch file</option><option value="">NO thing</option><option value="shutdown.exe /r /t 05">Reboot</option><option value="shutdown /s /t 05">shutdown</option></select></div></td></tr>
+		<tr><td colspan="3" align="center"><input type="hidden" id="OTHERS_PCname" name="OTHERS_PCname"/><input  style="width: 145px;" type = "submit" value="submit"></td></tr>		
+		</table>
+		</form>
+		</div>
+		
+		
+		
+		
+		
+		
+		<!-- for all accounts Data generators -->
+		
+		</div>
+		<!--------------------Deskeys main DrobMenu-------------------->
+        <div id="content_6" class="hide">
+		<table border="0" width="100%"><tr><td>
+		<details><summary>BM</summary>
+		<table border="0" width="100%" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+		<tr><td colspan="2"> BM </td></tr>
+		<tr style="background-color: #000; color: #fff;"><td>1<sup>st</sup> Part</td><td>2<sup>nd</sup> Part</td></tr>
+		<tr style="background-color: #ccc;"><td>7CE3</td><td>0000</td></tr>
+		<tr><td>2916</td><td>0000</td></tr>
+		<tr style="background-color: #ccc;"><td>FE1F</td><td>0000</td></tr>
+		<tr><td>B60E</td><td>0000</td></tr>
+		<tr style="background-color: #ccc;"><td>19BF</td><td>0000</td></tr>
+		<tr><td>F438</td><td>0000</td></tr>
+		<tr style="background-color: #ccc;"><td>43E3</td><td>0000</td></tr>
+		<tr><td>BC00</td><td>009E</td></tr>
+		<tr style="background-color: #000; color: #fff;"><td>SUM</td><td>F722</td></tr>
+		</table>
+		</details><br>
+							<!--NBE sub DrobMenu Deskeys-->
+			<details><summary>NBE</summary>
+		<table border="0" width="100%" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><td colspan="2"> NBE </td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>1<sup>st</sup> Part</td><td>2<sup>nd</sup> Part</td></tr>
+			<tr style="background-color: #ccc;"><td>16B9</td><td>0000</td></tr>
+			<tr><td>3EF7</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>B9AB</td><td>0000</td></tr>
+			<tr><td>869D</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>70C4</td><td>0000</td></tr>
+			<tr><td>79F8</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>89EA</td><td>0000</td></tr>
+			<tr><td>1CE5</td><td>0000</td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>SUM</td><td>7C1C</td></tr>
+			</table>
+			</details><br>
+							<!--BDC sub DrobMenu Deskeys-->
+			<details><summary>BDC</summary>
+		<table border="0" width="100%" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><td colspan="2"> BDC </td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>1<sup>st</sup> Part</td><td>2<sup>nd</sup> Part</td></tr>
+			<tr style="background-color: #ccc;"><td>4F9E</td><td>0000</td></tr>
+			<tr><td>CE76</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>8910</td><td>0000</td></tr>
+			<tr><td>AB46</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>8C6E</td><td>0000</td></tr>
+			<tr><td>C15B</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>13C7</td><td>0000</td></tr>
+			<tr><td>9704</td><td>0000</td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>SUM</td><td>6B8E</td></tr>
+			</table>
+			</details><br>
+							<!--FIB sub DrobMenu Deskeys-->
+			<details><summary>FIB</summary>
+		<table border="0" width="100%" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><td colspan="2"> FIB </td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>1<sup>st</sup> Part</td><td>2<sup>nd</sup> Part</td></tr>
+			<tr style="background-color: #ccc;"><td>2F2C</td><td>F4DF</td></tr>
+			<tr><td>37CD</td><td>3D98</td></tr>
+			<tr style="background-color: #ccc;"><td>989E</td><td>0EC7</td></tr>
+			<tr><td>EFEF</td><td>AB29</td></tr>
+			<tr style="background-color: #ccc;"><td>07DF</td><td>B0B9</td></tr>
+			<tr><td>671C</td><td>DCA1</td></tr>
+			<tr style="background-color: #ccc;"><td>3EC7</td><td>FBC7</td></tr>
+			<tr><td>917F</td><td>DA45</td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>SUM</td><td>39F2</td></tr>
+			</table>
+			</details><br>
+							<!--CIB sub DrobMenu Deskeys-->			
+			<details><summary>CIB</summary>
+		<table border="0" width="100%" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><td colspan="2"> CIB </td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>1<sup>st</sup> Part</td><td>2<sup>nd</sup> Part</td></tr>
+			<tr style="background-color: #ccc;"><td>ABA4</td><td>0000</td></tr>
+			<tr><td>CDA2	</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>4F43</td><td>0000</td></tr>
+			<tr><td>310E</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>682F</td><td>0000</td></tr>
+			<tr><td>D632</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>FEC8</td><td>0000</td></tr>
+			<tr><td>38C4</td><td>0000</td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>SUM</td><td>7E85</td></tr>
+			</table>
+			</details><br>
+							<!--HDB sub DrobMenu Deskeys-->
+			<details><summary>HDB</summary>
+		<table border="0" width="100%" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><td colspan="2"> HDB </td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>1<sup>st</sup> Part</td><td>2<sup>nd</sup> Part</td></tr>
+			<tr style="background-color: #ccc;"><td>2323</td><td>0000</td></tr>
+			<tr><td>2323</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>2323</td><td>0000</td></tr>
+			<tr><td>2323</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>0000</td><td>2323</td></tr>
+			<tr><td>0000</td><td>2323</td></tr>
+			<tr style="background-color: #ccc;"><td>0000</td><td>2323</td></tr>
+			<tr><td>0000</td><td>2323</td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>SUM</td><td>962B</td></tr>
+			</table> 
+			</details><br>
+							<!--EALB sub DrobMenu Deskeys-->
+			<details><summary>EALB</summary>
+		<table border="0" width="100%" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><td colspan="2"> EALB </td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>1<sup>st</sup> Part</td><td>2<sup>nd</sup> Part</td></tr>
+			<tr style="background-color: #ccc;"><td>2C80</td><td>CDF4</td></tr>
+			<tr><td>97C8</td><td>3E23</td></tr>
+			<tr style="background-color: #ccc;"><td>F2BA</td><td>4C26</td></tr>
+			<tr><td>DA6B</td><td>91D9</td></tr>
+			<tr style="background-color: #ccc;"><td>40D5</td><td>DFAE</td></tr>
+			<tr><td>3EBA</td><td>070E</td></tr>
+			<tr style="background-color: #ccc;"><td>16CD</td><td>DAC1</td></tr>
+			<tr><td>9275</td><td>8570</td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>SUM</td><td>9991</td></tr>
+			</table>  
+			</details><br>
+							<!--NBE sub DrobMenu Deskeys-->
+			<details><summary>ENPO</summary>
+		<table border="0" width="100%" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><td colspan="2"> ENPO </td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>1<sup>st</sup> Part</td><td>2<sup>nd</sup> Part</td></tr>
+			<tr style="background-color: #ccc;"><td>3D29</td><td>0000</td></tr>
+			<tr><td>940E</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>83F1</td><td>0000</td></tr>
+			<tr><td>B915</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>4929</td><td>0000</td></tr>
+			<tr><td>73A1</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>BCF8</td><td>0000</td></tr>
+			<tr><td>8CF8</td><td>0000</td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>SUM</td><td>AECE</td></tr>
+			</table>  
+			</details><br>
+							<!--ABE sub DrobMenu Deskeys-->
+			<details><summary>ABE</summary>
+		<table border="0" width="100%" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><td colspan="2"> ABE </td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>1<sup>st</sup> Part</td><td>2<sup>nd</sup> Part</td></tr>
+			<tr style="background-color: #ccc;"><td>1394</td><td>64CE</td></tr>
+			<tr><td>7062</td><td>0786</td></tr>
+			<tr style="background-color: #ccc;"><td>DF85</td><td>D975</td></tr>
+			<tr><td>2C13</td><td>5104</td></tr>
+			<tr style="background-color: #ccc;"><td>8F2F</td><td>8AF2</td></tr>
+			<tr><td>8623</td><td>16A4</td></tr>
+			<tr style="background-color: #ccc;"><td>FECB</td><td>9158</td></tr>
+			<tr><td>1AEC</td><td>ABD0</td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>SUM</td><td>039F</td></tr>
+			</table>
+			</details><br>
+							<!--AIBK sub DrobMenu Deskeys-->
+			<details><summary>AIBK</summary>
+		<table border="0" width="100%" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><td colspan="2"> AIBK </td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>1<sup>st</sup> Part</td><td>2<sup>nd</sup> Part</td></tr>
+			<tr style="background-color: #ccc;"><td>67D0</td><td>0000</td></tr>
+			<tr><td>6B07</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>C17C</td><td>0000</td></tr>
+			<tr><td>61CB</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>C7DF</td><td>0000</td></tr>
+			<tr><td>8CC2</td><td>0000</td></tr>
+			<tr style="background-color: #ccc;"><td>DFE6</td><td>0000</td></tr>
+			<tr><td>FB43</td><td>0000</td></tr>
+			<tr style="background-color: #000; color: #fff;"><td>SUM</td><td>24A7</td></tr>
+			</table>
+			</details><br>
+		</td></tr></table>
+		</div>
+		
+		<!--------------------Accounts admin password main DrobMenu-------------------->
+
+		<div id="content_7" class="hide">
+		<table border="0" width="100%">
+		<tr><td colspan="2">
+				<!-- NBE Account Password sub DrobMenu-->
+			<details><summary>NBE</summary>
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">nbeatm</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">@tm_87654321@TM</th></tr>
+			</table>
+			</details><br>
+				<!-- BM Account Password sub DrobMenu-->		
+			<details><summary>BM</summary>			
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">atmbranch</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor@12345678</td></tr>
+			</table>
+			</details><br>
+				<!-- BDC Account Password sub DrobMenu-->		
+			<details><summary>BDC</summary>					
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor@12345678</td></tr>
+			</table>
+			</details><br>
+				<!-- ENPO Account Password sub DrobMenu-->					
+			<details><summary>ENPO</summary>					
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">enpo1234ENPO</td></tr>
+			<tr><th style="border-top: thin solid;color:red">usr</th><th style="border-top: thin solid;align:center;color:green;">Administrator</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Enpo</td></tr></table>
+			</details><br>
+			
+			
+				<!-- ABE Account Password sub DrobMenu-->						
+			<details><summary>ABE</summary>					
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">ABEDN</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">atm4007ADCAAMO</td></tr>
+			</table>
+			</details><br>
+				<!-- BOA Account Password sub DrobMenu-->					
+			<details><summary>BOA</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor</td></tr>
+			<tr><th style="border-top: thin solid;color:red">usr</th><th style="border-top: thin solid;align:center;color:green;">Administrator</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor@12345678</td></tr>
+			<tr><th style="border-top: thin solid;color:red">usr</th><th style="border-top: thin solid;align:center;color:green;">afm</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Security.1</td></tr>
+			<tr><th style="border-top: thin solid;color:red">usr</th><th style="border-top: thin solid;align:center;color:green;">afm</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">SECURITY.1</td></tr>
+			</table>
+			</details><br>
+				<!-- CAE Account Password sub DrobMenu-->		
+			<details><summary>CAE</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">caeatmmanager</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor@12345678</td></tr>
+			<tr><th style="border-top: thin solid;color:red">usr</th><th style="border-top: thin solid;align:center;color:green;">Administrator</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor</td></tr>
+			</table>		
+			</details><br>
+				<!-- FIB Account Password sub DrobMenu-->				
+			<details><summary>FIB</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">DieboldNixdorf.1</td></tr>
+			<tr><th style="border-top: thin solid;color:red">usr</th><th style="border-top: thin solid;align:center;color:green;">managesystem</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">diebold.nixdorf.1</td></tr>
+			</table>
+			</details><br>
+				<!-- AWB Account Password sub DrobMenu-->					
+			<details><summary>AWB</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">AWB.Winc0r@22523</td></tr>
+			</table>
+			</details><br>
+				<!-- SAIB Account Password sub DrobMenu-->									
+			<details><summary>SAIB</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor@12345678</td></tr>
+			</table>
+			</details><br>
+				<!-- TUB Account Password sub DrobMenu-->								
+			<details><summary>TUB</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">Atmbranch</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">1234</td></tr>
+			</table>
+			</details><br>
+				<!-- NBK Account Password sub DrobMenu-->						
+			<details><summary>NBK</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">.\manage_atm</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor@12345678</td></tr>
+			</table>
+			</details><br>
+				<!-- AB Account Password sub DrobMenu-->					
+			<details><summary>AB</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">Administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor</td></tr>
+			</table>
+			</details><br>
+				<!-- HDB Account Password sub DrobMenu-->					
+			<details><summary>HDB</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">Administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">wincor.1234WINCOR</td></tr>
+			<tr><th style="border-top: thin solid;color:red">usr</th><th style="border-top: thin solid;align:center;color:green;">Administrator</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor</td></tr>
+			</table>		
+			</details><br>
+				<!-- AIBK Account Password sub DrobMenu-->					
+			<details><summary>AIBK</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">Administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">DieboldNixdorf.01</td></tr>
+			<tr><th style="border-top: thin solid;color:red">usr</th><th style="border-top: thin solid;align:center;color:green;">Administrator</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor</td></tr>
+			</table>
+			</details><br>
+				<!-- CIB Account Password sub DrobMenu-->							
+			<details><summary>CIB</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">Administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor12345678</td></tr>
+			<tr><th style="border-top: thin solid;color:red">usr</th><th style="border-top: thin solid;align:center;color:green;">Administrator</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor@12345678</td></tr>
+			</table>
+			</details><br>
+				<!-- ADIB Account Password sub DrobMenu-->					
+			<details><summary>ADIB</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">Administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor@12345678</td></tr>
+			</table>
+			</details><br>
+				<!-- EGB Account Password sub DrobMenu-->					
+			<details><summary>EGB</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">Administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor@12345678</td></tr>
+			<tr><th style="border-top: thin solid;color:red">usr</th><th style="border-top: thin solid;align:center;color:green;">Administrator</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">bank123BANK!@#</td></tr>
+
+			</table>
+			</details><br>
+			
+				<!-- BRKA Account Password sub DrobMenu-->					
+			<details><summary>BRKA</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">DNadmin</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor123</td></tr>
+
+			</table>
+			</details><br>
+				<!-- QNB Account Password sub DrobMenu-->					
+			<details><summary>QNB</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;"> </td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;"> </td></tr>
+			</table>
+			</details><br>
+				<!-- EALB Account Password sub DrobMenu-->					
+			<details><summary>EALB</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">Administrator</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor</td></tr>
+			<tr><th style="border-top: thin solid;color:red">usr</th><th style="border-top: thin solid;align:center;color:green;">Administrator</th></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">Wincor@12345678</td></tr>
+			</table>
+			</details><br>
+				<!-- EF Account Password sub DrobMenu-->								
+			<details><summary>EF</summary>				
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;"> </td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;"> </td></tr>
+			</table>
+			</details><br>
+				<!-- EURONET Account Password sub DrobMenu-->					
+			<details><summary>EURONET</summary>
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;"> </td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;"> </td></tr>
+			</table>
+			</details><br>
+				<!-- AUB Account Password sub DrobMenu-->					
+			<details><summary>AUB</summary>
+		<table border="0" width="206px" cellpadding="3" style="border: 2px solid #000;text-align:center;font-weight:bold;">
+			<tr><th style="color:red;">usr</th><th style="align:center;color:green;">username</td></tr>
+			<tr><th style="color:red;">pass</th><th style="align:center;color:green;">password</td></tr>
+			</table>
+			</details><br><br><br><br>
+				<!-------------------------------------------------------->					
+		</td></tr>
+		</table>
+		</div>
+
+		<!--------------------BIOS passwords main DrobMenu-------------------->
+
+		<div id="content_8" class="hide">	
+		<table border="0"  border="0" width="210px" cellpadding="3" style="border-radius: 0px 15px; border: 2px solid #000;border-spacing: 1px; text-align:center;font-weight:bold;">
+		<tr style="background-color: #000; color: #fff;"><td style="border-radius: 0px 15px 0px 0px;">BIOS Password</td></tr>
+		<tr><td>DNDefault123</td></tr>
+		<tr  style="background-color: #ccc;"><td>As12345</td></tr>
+		<tr><td>456789</td></tr>
+		<tr  style="background-color: #ccc;"><td>Wincor12345</td></tr>
+		<tr><td>Wincor@12345</td></tr>
+		<tr  style="background-color: #ccc;"><td>wincor12345</td></tr>
+		<tr><td>wincor@12345</td></tr>
+		<tr  style="background-color: #ccc;"><td>wincor123</td></tr>
+		<tr><td>Wincor@123</td></tr>
+		<tr  style="background-color: #ccc;"><td>ATM12345</td></tr>
+		<tr><td>87654321</td></tr>
+		<tr  style="background-color: #ccc;"><td>12345678</td></tr>
+		<tr><td>987654</td></tr>
+		<tr  style="background-color: #ccc;"><td>123456</td></tr>
+		<tr><td>111111</td></tr>
+		<tr  style="background-color: #ccc;"><td>DNDefault</td></tr>
+		<tr><td>P@ssword</td></tr>
+		<tr  style="background-color: #000; color: #fff;"><td>AMT Configration Password</td></tr>
+		<tr><td>Admin@123</td></tr>
+		<tr  style="background-color: #ccc;"><td>admin</td></tr>
+		<tr><td>admin@123</td></tr>
+		</table>
+		</div>			
+			
+			<!----Question And Answers main DrobMenu--->
+			<!----<details><summary>Details</summary><b>a batch file that auto export journal, keystort, IPs, Computer Name, Terminal, ..etc To the same folder where this file is placed</b></details>--->
+		<div id="content_9" class="hide">
+		<form action="#" onsubmit="ATM();return false">
+		<details><summary>TOOLS</summary>
+		<table width="100%" border="0">
+		<tr><td><a href="https://docs.google.com/spreadsheets/d/19P41_qdESPnAjFbFwBFGdmpPzulB_GQdgcRHG1I9vMs/edit#gid=0" class="lnk" target=”_blank”>DN Cassette Configration</a></td></tr>
+		<tr><td><a href="https://docs.google.com/spreadsheets/d/1Ic6xh5vVGQDpIBgUJI4iN8BO1oCqepCLoa5nC6V8AF4/edit#gid=725233425" class="lnk" target=”_blank”>Golden Image Tracking Sheet</a></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/jxxjxhtw5rxn4n3/Data_Exporter_V_0.1.021.bat/file" class="lnk" target=”_blank”>ATM Data Exporter</a></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/poa34pmlnlum4zz/Player_package.rar/file" class="lnk" target=”_blank”>ATMI player Packge</a></td></tr>	
+		<tr><td><a href="https://www.mediafire.com/file/2yyk0wx89y2io7c/Feint_%255B1.2%255D.zip/file" target=”_blank” class="lnk">Error code diagnostic Tool</div></a></td></tr>		
+		</table>
+		</details><br>
+
+		<details><summary>Boot Application</summary>
+		<table width="100%" border="0">
+		<tr><td><a href="https://www.mediafire.com/file/2pb2eu59i49a1su/XBootv1.0beta14.zip/file" target=”_blank”><div class="lnk">Xboot.exe</div></a></td><td><a href="https://www.mediafire.com/file/eua37ej3cf313de/Create_Multiboot_usb_Using_XBOOT.docx/file" target=”_blank”><div class="lnk">Tut</div></a></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/pgaq8q6ij3itb5k/ventoy-1.0.85-windows.zip/file" target=”_blank”><div class="lnk">Ventoy</div></a></td><td><div class="lnk">Tut</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/sc9zayxe1zxqegm/Easy2Boot_v2.19.zip/file" target=”_blank”><div class="lnk">Easy2Boot</div></a></td><td><div class="lnk">Tut</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/otvc198mixk9ktv/YUMI-exFAT-1.0.0.9.zip/file" target=”_blank”><div class="lnk">YUMI</div></a></td><td><div class="lnk">Tut</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/z5njvd7ibyjt2cf/rufus-3.21p.zip/file" target=”_blank”><div class="lnk">RUFUS</div></a></td><td><div class="lnk">Tut</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/folder/a1bfmhewfohbv/AOMEI+PE+Builder+2.0" target=”_blank”><div class="lnk">AOMEI PE Builder</div></a></td><td><div class="lnk">Tut</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/folder/p7rbm314d67k4/RMP+rep+USB" target=”_blank”><div class="lnk">RMP rep USB</div></a></td><td><div class="lnk">Tut</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/folder/rta1xv7nfbnk1/ISO+Tester" target=”_blank”><div class="lnk">ISO Tester</div></a></td><td><div class="lnk">Tut</div></td></tr>			
+		</table>
+
+		</details><br>
+		
+		<details><summary>ISOs</summary> 
+		<table width="100%" border="0">
+		<tr><td><a href="https://www.mediafire.com/file/zxpzdgt6dq4x0c3/acronistrueimage.iso/file" target=”_blank” class="lnk"> Acronis True Image</a></td><td><div class="lnk">705Mb</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/pzbe9adolrwdw9h/Mini_Windows_10_%2528Aomei%252BNTP%252BPartitionWizard%2529.iso/file" target=”_blank” class="lnk">Win10 Multi task</a></td><td><div class="lnk">741Mb</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/r8vcco6ffwh7voz/ghost.iso/file" target=”_blank”><div class="lnk">Ghost</div></a></td><td><div class="lnk">192Mb</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/zk3bg6zxsj4985s/Macrium_Rescue.iso/file" target=”_blank” class="lnk">Macrium Rescue</a></td><td><div class="lnk">614 Mb</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/1kp2pj0mvqopqu4/easeusdatarecovery.iso/file" target=”_blank” class="lnk">EaseUS</a></td><td><div class="lnk">541Mb</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/fz8fpdox22gp5et/mayfair.iso/file" target=”_blank” class="lnk">Mayfair (6/2023)</a></td><td><div class="lnk">607Mb</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/1yt5c6euoy1bqfa/Mini_Windows_11.iso/file" target=”_blank” class="lnk">Mini Windows 11</a></td><td><div class="lnk">2.4Gb</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/l91x1qi162mz9xj/Mini_Windows_XP.iso/file" target=”_blank” class="lnk">Mini Windows XP</a></td><td><div class="lnk">595Mb</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/je5rsxue482d13w/Aomei.iso/file" target=”_blank” class="lnk">Aomei Latest Ver.</a></td><td><div class="lnk">711Mb</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/uxrktuvukrkg20i/AOMEI_Backupper_Technician_Plus_WinPE_Boot_Legacy_5.9.0.iso/file" target=”_blank” class="lnk">Aomei Old Ver.</a></td><td><div class="lnk">366Mb</div></td></tr>
+		<tr><td><a href="https://www.mediafire.com/file/2sdfkh5s7abjh4z/DLC_Boot2019.iso/file" target=”_blank” class="lnk">DLC Boot 2019</a></td><td><div class="lnk">2.9Gb</div></td></tr>
+		
+		
+		</table>
+		</details>	
+		</form>	
+			
+		</div>
+		<!--------------------------------------------------------->
+		<!--main DrobMenu soon-->
+		<div id="content_10" class="hide">
+		<div class="header" id="header01">
+        <input type="text" id="search" placeholder="Search ATM Parts"/><input onclick="search(document.getElementById('search').value)" type="button" value="Search"/>
+		</div>
+		<div id="content01" class="content">
+		<div class="header" id="header02"><B>Wincor Parts</B></div>
+		<div id="content02" class="content">
+		<!----Wincor Parts----> 
+		<table border="0" width="100%" class="myWincorParts">
+		<!--Card Reader-->
+		<tr><th style="max-width: 5px; min-width:5px ; overflow: auto; "><font size="-2">Device</font></th><th width="100%"><font size="-2">Part No.</font></th></tr>
+		<tr><td rowspan="8" align="center" style="border-bottom: 3px solid black;"><font size="-2">Card Reader</font></td>
+		<td align="center">    <p id="001a"  ondblclick="message('Copied',500);CopyToClipboard('001a');" class="test">Whole Card Reader :   1750173205</p></td></tr>
+		<tr><td align="center"><p id="002a"  ondblclick="message('Copied',500);CopyToClipboard('002a');" class="test">Magnetic Head :   175017320535 </p></td></tr>
+		<tr><td align="center"><p id="003a"  ondblclick="message('Copied',500);CopyToClipboard('003a');" class="test">Smart Chip :  175017320539</p></td></tr>
+		<tr><td align="center"><p id="004a"  ondblclick="message('Copied',500);CopyToClipboard('004a');" class="test">V2CU Card reader shutter :  1770041407</p></td></tr>
+		<tr><td align="center"><p id="005a"  ondblclick="message('Copied',500);CopyToClipboard('005a');" class="test">V2CF Card reader control board :   1750173205-29</p></td></tr>
+		<tr><td align="center"><p id="006a"  ondblclick="message('Copied',500);CopyToClipboard('006a');" class="test">Card Reader LED board :   1750186807</p></td></tr>
+		<tr><td align="center"><p id="007a"  ondblclick="message('Copied',500);CopyToClipboard('007a');" class="test">Card reader Plastic Piece :   01750144546</p></td></tr>
+		<tr><td align="center" style=" border-bottom: 3px solid black;" >
+		<form name="copy">     <p id="008a"  ondblclick="message('Copied',500);CopyToClipboard('008a');" class="test">Askim Board :   01750176088</p></td></tr>
+		
+		<!--Receipt Printer-->
+		<tr><td rowspan="7" align="center" style="border-bottom: 3px solid black;" ><font size="-2">Receipt Printer</font></td>
+		    <td align="center"><p id="009a"  ondblclick="message('Copied',500);CopyToClipboard('009a');" class="test">Askim Coil :   1750164717</p></td></tr>
+		<tr><td align="center"><p id="010a"  ondblclick="message('Copied',500);CopyToClipboard('010a');" class="test">Whole Receipt TP07 :  1750130744</p></td></tr>
+		<tr><td align="center"><p id="011a"  ondblclick="message('Copied',500);CopyToClipboard('011a');" class="test">Whole Receipt TP27 :  1750256247</p></td></tr>
+		<tr><td align="center"><p id="012a"  ondblclick="message('Copied',500);CopyToClipboard('012a');" class="test">BMS of receipt printer TP27 :  ETZTP27SENSOR</p></td></tr>
+		<tr><td align="center"><p id="013a"  ondblclick="message('Copied',500);CopyToClipboard('013a');" class="test">Receipt Printer TP27 Small Gear :  Pt1314</p></td></tr>
+		<tr><td align="center"><p id="014a"  ondblclick="message('Copied',500);CopyToClipboard('014a');" class="test">Thermal Head of TP27 :  01750256692</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		     <form name="copy"><p id="015a"  ondblclick="message('Copied',500);CopyToClipboard('015a');" class="test">Receipt Printer Cutter :  01750256691</p></td></tr>
+		<!--Journal Printer-->
+		<tr><td style="border-bottom: 3px solid black;" align="center"><font size="-2">Journal Printer</font></td>
+		<td style="border-bottom: 3px solid black;" align="center">
+		                      <p id="016a"  ondblclick="message('Copied',500);CopyToClipboard('016a');" class="test">Journal Printer TP06 :  1750110043</p></td></tr>
+		<!--Screens & Controllers-->
+		
+		
+		<tr><td rowspan="8" align="center" style="border-bottom: 3px solid black;" ><font size="-2">Screens &amp; Controllers</font></td>
+		
+		<td align="center"><p id="017a"  ondblclick="message('Copied',500);CopyToClipboard('017a');" class="test">Touch Screen 2550 :   01750261900</p></td></tr>
+		<tr><td align="center"><p id="018a"  ondblclick="message('Copied',500);CopyToClipboard('018a');" class="test">Touch Screen 2040 :  1750160132</p></td></tr>
+		<tr><td align="center"><p id="019a"  ondblclick="message('Copied',500);CopyToClipboard('019a');" class="test">2550 Touch Screen Controller :  1750350314</p></td></tr>
+		<tr><td align="center"><p id="020a"  ondblclick="message('Copied',500);CopyToClipboard('020a');" class="test">OLD Touch Controller :  01750154145</p></td></tr>
+		<tr><td align="center"><p id="021a"  ondblclick="message('Copied',500);CopyToClipboard('021a');" class="test">New Touch Controller  : 01750313465</p></td></tr>
+		<tr><td align="center"><p id="022a"  ondblclick="message('Copied',500);CopyToClipboard('022a');" class="test">Touch Controller 490 :  1750302529</p></td></tr>
+		<tr><td align="center"><p id="023a"  ondblclick="message('Copied',500);CopyToClipboard('023a');" class="test">Screen RL  : 01750262931</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="024a"  ondblclick="message('Copied',500);CopyToClipboard('024a');" class="test">Supervisor Screen OP06  : 1750267652</p></td></tr>
+		<!--EPP & FDK-->
+		
+		
+		<tr><td rowspan="3" align="center" style="border-bottom: 3px solid black;" ><font size="-2">EPP &amp; FDK</font></td>
+		<td align="center">    <p id="025a"  ondblclick="message('Copied',500);CopyToClipboard('025a');" class="test">EPP 6 :  1750159457</p></td></tr>
+		<tr><td align="center"><p id="026a"  ondblclick="message('Copied',500);CopyToClipboard('026a');" class="test">EPP 6 Shield  : 1750185055</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="027a"  ondblclick="message('Copied',500);CopyToClipboard('027a');" class="test">FDK for 2550 :  1750190139</p></td></tr>
+		<!--Shutter-->
+		
+		
+		
+		<tr><td rowspan="3" align="center" style="border-bottom: 3px solid black;" ><font size="-2">Shutter</font></td>
+		     <td align="center"><p id="028a"  ondblclick="message('Copied',500);CopyToClipboard('028a');" class="test">Shutter 2550,2560, 2040 &amp; 2060  : 1750157286</p></td></tr>
+		<tr><td align="center"><p id="029a"  ondblclick="message('Copied',500);CopyToClipboard('029a');" class="test">Pro cash Shutter  : 01750009924</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="030a"  ondblclick="message('Copied',500);CopyToClipboard('030a');" class="test">Shutter Cable :  1750206755</p></td></tr>
+		<!--Dispenser-->
+		
+		
+		
+		<tr><td rowspan="18" align="center" style="border-bottom: 3px solid black;" ><font size="-2">Dispenser</font></td>
+		    <td align="center"><p id="031a"  ondblclick="message('Copied',500);CopyToClipboard('031a');" class="test">Stacker :  1750109659</p></td></tr>
+		<tr><td align="center"><p id="032a"  ondblclick="message('Copied',500);CopyToClipboard('032a');" class="test">Presenter :  1750239621</p></td></tr>
+		<tr><td align="center"><p id="033a"  ondblclick="message('Copied',500);CopyToClipboard('033a');" class="test">Single Reject :  01750109659</p></td></tr>
+		<tr><td align="center"><p id="034a"  ondblclick="message('Copied',500);CopyToClipboard('034a');" class="test">Single Reject Plastic Piece :  01750057879</p></td></tr>
+		<tr><td align="center"><p id="035a"  ondblclick="message('Copied',500);CopyToClipboard('035a');" class="test">Leaf Springs :  01750058042_50</p></td></tr>
+		<tr><td align="center"><p id="036a"  ondblclick="message('Copied',500);CopyToClipboard('036a');" class="test">Clamp  : 1750053977</p></td></tr>
+		<tr><td align="center"><p id="037a"  ondblclick="message('Copied',500);CopyToClipboard('037a');" class="test">Clamp Motor  : 1750042248</p></td></tr>
+		<tr><td align="center"><p id="038a"  ondblclick="message('Copied',500);CopyToClipboard('038a');" class="test">Clamp Locks (Left / Right) :  1750042089 / 1750042090</p></td></tr>
+		<tr><td align="center"><p id="039a"  ondblclick="message('Copied',500);CopyToClipboard('039a');" class="test">CMD 4-Pully guide for Clamp  : 1750157444</p></td></tr>
+		<tr><td align="center"><p id="040a"  ondblclick="message('Copied',500);CopyToClipboard('040a');" class="test">Stepper Motor :  01750046741</p></td></tr>
+		<tr><td align="center"><p id="041a"  ondblclick="message('Copied',500);CopyToClipboard('041a');" class="test">DDU Cable :  01750044668</p></td></tr>
+		<tr><td align="center"><p id="042a"  ondblclick="message('Copied',500);CopyToClipboard('042a');" class="test">Dispenser Main Board  : 1750105679</p></td></tr> 
+		<tr><td align="center"><p id="043a"  ondblclick="message('Copied',500);CopyToClipboard('043a');" class="test">CMDv4 Cassettes Board  : 1750044878</p></td></tr>
+		<tr><td align="center"><p id="044a"  ondblclick="message('Copied',500);CopyToClipboard('044a');" class="test">CMD V4 Chassis 4 Cassettes  : 01750130600</p></td></tr>
+		<tr><td align="center"><p id="045a"  ondblclick="message('Copied',500);CopyToClipboard('045a');" class="test">Upper Extractor  :  01750109641</p></td></tr>
+		<tr><td align="center"><p id="046a"  ondblclick="message('Copied',500);CopyToClipboard('046a');" class="test">Lower Double Extractor  : 01750109615</p></td></tr>
+		<tr><td align="center"><p id="047a"  ondblclick="message('Copied',500);CopyToClipboard('047a');" class="test">Lower Single Extractor  : 01750109613</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="048a"  ondblclick="message('Copied',500);CopyToClipboard('048a');" class="test">Feed Shaft  : 01750035752</p></td></tr>
+		<!--CCDM-->
+		
+		
+		
+		<tr><td rowspan="12" align="center" style="border-bottom: 3px solid black;" ><font size="-2">CCDM</font></td>
+		    <td align="center"><p id="049a"  ondblclick="message('Copied',500);CopyToClipboard('049a');" class="test">CCDM  : 01750064500</p></td></tr>
+		<tr><td align="center"><p id="050a"  ondblclick="message('Copied',500);CopyToClipboard('050a');" class="test">CCDM Chassis :  1750188523</p></td></tr>
+		<tr><td align="center"><p id="051a"  ondblclick="message('Copied',500);CopyToClipboard('051a');" class="test">CCDM Input Area :  01750168270</p></td></tr>
+		<tr><td align="center"><p id="052a"  ondblclick="message('Copied',500);CopyToClipboard('052a');" class="test">CCDM input area fork (Flipper) :  1750047826</p></td></tr>
+		<tr><td align="center"><p id="053a"  ondblclick="message('Copied',500);CopyToClipboard('053a');" class="test">CCDM I/P area flat cables :  1750055614</p></td></tr>
+		<tr><td align="center"><p id="054a"  ondblclick="message('Copied',500);CopyToClipboard('054a');" class="test">CCDM Input Area Board :  01750102014</p></td></tr>
+		<tr><td align="center"><p id="055a"  ondblclick="message('Copied',500);CopyToClipboard('055a');" class="test">CCDM Intermediate  : 01750101952</p></td></tr>
+		<tr><td align="center"><p id="056a"  ondblclick="message('Copied',500);CopyToClipboard('056a');" class="test">CCDM Alignment :  01750188524</p></td></tr>
+		<tr><td align="center"><p id="057a"  ondblclick="message('Copied',500);CopyToClipboard('057a');" class="test">CCDM Scanner :  01750154867</p></td></tr>
+		<tr><td align="center"><p id="058a"  ondblclick="message('Copied',500);CopyToClipboard('058a');" class="test">CCDM ESCROW  : 1750177464</p></td></tr>
+		<tr><td align="center"><p id="059a"  ondblclick="message('Copied',500);CopyToClipboard('059a');" class="test">CCDM Power Supply :  1750160690</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="060a"  ondblclick="message('Copied',500);CopyToClipboard('060a');" class="test">CCDM Power Board :  1750155446</p></td></tr>
+		<!--For RM3-->
+		
+		
+		
+		<tr><td rowspan="7" align="center" style="border-bottom: 3px solid black;"  ><font size="-2">For RM3</font></td>
+		     <td align="center"><p id="061a"  ondblclick="message('Copied',500);CopyToClipboard('061a');" class="test">RM3 Input Area :  01750220330</p></td></tr>
+		<tr><td align="center"><p id="062a"  ondblclick="message('Copied',500);CopyToClipboard('062a');" class="test">RM3 Input Area Collector :  01750248000</p></td></tr>
+		<tr><td align="center"><p id="063a"  ondblclick="message('Copied',500);CopyToClipboard('063a');" class="test">RM3 Escrow  : 01750126457</p></td></tr>
+		<tr><td align="center"><p id="064a"  ondblclick="message('Copied',500);CopyToClipboard('064a');" class="test">RM3 Shutter :  1750143750</p></td></tr>
+		<tr><td align="center"><p id="065a"  ondblclick="message('Copied',500);CopyToClipboard('065a');" class="test">RM3 String  : 01750200435</p></td></tr>
+		<tr><td align="center"><p id="066a"  ondblclick="message('Copied',500);CopyToClipboard('066a');" class="test">RM3 String Board  : 1750195160</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="067a"  ondblclick="message('Copied',500);CopyToClipboard('067a');" class="test">RM3 Feed shaft :  1750239538</p></td></tr>
+		<!--- Others-->
+		
+		
+		
+		<tr><td rowspan="16" align="center"  ><font size="-2">Others</font></td>
+		<td align="center">    <p id="068a"  ondblclick="message('Copied',500);CopyToClipboard('068a');" class="test">Cage BM  :  01750262084</p></td></tr>
+		<tr><td align="center"><p id="069a"  ondblclick="message('Copied',500);CopyToClipboard('069a');" class="test">Cage BM RM4  :  1750302004</p></td></tr>
+		<tr><td align="center"><p id="070a"  ondblclick="message('Copied',500);CopyToClipboard('070a');" class="test">Mini Hard 500 GB  :  Local part</p></td></tr>
+		<tr><td align="center"><p id="071a"  ondblclick="message('Copied',500);CopyToClipboard('071a');" class="test">ATM HHD 500 GB  :  ATM HHD 500 GB</p></td></tr>
+		<tr><td align="center"><p id="072a"  ondblclick="message('Copied',500);CopyToClipboard('072a');" class="test">PDU  :  01750150107</p></td></tr>
+		<tr><td align="center"><p id="073a"  ondblclick="message('Copied',500);CopyToClipboard('073a');" class="test">Power Supply Cage  :  1750255322</p></td></tr>
+		<tr><td align="center"><p id="074a"  ondblclick="message('Copied',500);CopyToClipboard('074a');" class="test">Power Supply Device  :  1750263469</p></td></tr>
+		<tr><td align="center"><p id="075a"  ondblclick="message('Copied',500);CopyToClipboard('075a');" class="test">Special Electronics  :  01750147868</p></td></tr>
+		<tr><td align="center"><p id="076a"  ondblclick="message('Copied',500);CopyToClipboard('076a');" class="test">Locking set (Mosa3den)  :  01750196346</p></td></tr>
+		<tr><td align="center"><p id="077a"  ondblclick="message('Copied',500);CopyToClipboard('077a');" class="test">Mega pixel color camera  :  2013110000010B</p></td></tr>
+		<tr><td align="center"><p id="078a"  ondblclick="message('Copied',500);CopyToClipboard('078a');" class="test">Mini USB Camera  :  AD-H134MCU</p></td></tr>
+		<tr><td align="center"><p id="079a"  ondblclick="message('Copied',500);CopyToClipboard('079a');" class="test">Portrait Camera  :  1750265337</p></td></tr>
+		<tr><td align="center"><p id="080a"  ondblclick="message('Copied',500);CopyToClipboard('080a');" class="test">Shutter Camera  :  1750196299</p></td></tr>
+		<tr><td align="center"><p id="081a"  ondblclick="message('Copied',500);CopyToClipboard('081a');" class="test">SAS SATA Cable  :  1750300509</p></td></tr>
+		<tr><td align="center"><p id="082a"  ondblclick="message('Copied',500);CopyToClipboard('082a');" class="test">Lock with Keys  :  01750172192</p></td></tr>		
+		<tr><td align="center"><p id="083a"  ondblclick="message('Copied',500);CopyToClipboard('083a');" class="test">Lock Plastic Housing  :  01750199521</p></td></tr>
+		</table>  
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-------->
+		<div class="header" id="header03">RM4 Parts</div>
+		<div id="content03" class="content">
+		<!-------->
+		<table width="100%" class="myRM4Parts">
+		<!--card reader-->
+		<tr><th style="max-width: 8px; min-width:8px ; overflow: auto; "><font size="-2">Device</font></th><th  width="100%"><font size="-2">Part No.</font></th></tr>
+		<tr><td rowspan="7" align="center"  style="border-bottom: 3px solid black;"><font size="-2">Card Reader</font></td>
+        <td align="center">    <p id="001b"  ondblclick="message('Copied',500);CopyToClipboard('001b');" class="test">Antifish  :   1750304622-F</p></td></tr>
+		<tr><td align="center"><p id="002b"  ondblclick="message('Copied',500);CopyToClipboard('002b');" class="test">Magnetic Head :   1750304622-35</form></td></tr>
+		<tr><td align="center"><p id="003b"  ondblclick="message('Copied',500);CopyToClipboard('003b');" class="test">Main Board :  1750304622-B</p></td></tr>
+		<tr><td align="center"><p id="004b"  ondblclick="message('Copied',500);CopyToClipboard('004b');" class="test">Gate  : 1750304622-C</p></td></tr>
+		<tr><td align="center"><p id="005b"  ondblclick="message('Copied',500);CopyToClipboard('005b');" class="test">Smart Chip :  1750304622-39</p></td></tr>
+	    <tr><td align="center"><p id="006b"  ondblclick="message('Copied',500);CopyToClipboard('006b');" class="test">Chassis :  1750304622</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;"  align="center">
+		                       <p id="007b"  ondblclick="message('Copied',500);CopyToClipboard('007b');" class="test">CHD-mot ICT3H5-3AD2792 SecPac2 :  1750304622</p></td></tr>
+		
+		
+		<!--Receipt Printer-->
+		<tr><td rowspan="1" align="center" style="border-bottom: 3px solid black;"><font size="-2">Receipt Printer</font></td>
+		<td  align="center" style="border-bottom: 3px solid black;"><p id="008b"  ondblclick="message('Copied',500);CopyToClipboard('008b');" class="test">Receipt Printer TP31 :  01750302898</p></td></tr>
+		<!--Journal printer-->
+		<tr><td rowspan="1" align="center"   style="border-bottom: 3px solid black;"><font size="-2">Journal Printer</font></td>
+		<td  align="center" style="border-bottom: 3px solid black;"><p id="009b"  ondblclick="message('Copied',500);CopyToClipboard('009b');" class="test">Journal Printer TP29 :  01750302907</p></td></tr>
+		
+		
+		<!-- dispenser Head-->
+		<tr><td rowspan="21" align="center"   style="border-bottom: 3px solid black;"><font size="-2">Dispenser Head</font></td>
+		<td align="center">    <p id="010b"  ondblclick="message('Copied',500);CopyToClipboard('010b');" class="test">Som Board :  01750351818</p></td></tr>
+		<tr><td align="center"><p id="011b"  ondblclick="message('Copied',500);CopyToClipboard('011b');" class="test">BNR Board  : 01750301247</p></td></tr>
+		<tr><td align="center"><p id="012b"  ondblclick="message('Copied',500);CopyToClipboard('012b');" class="test">Calibration Note  : 01750211741</p></td></tr>
+		<tr><td align="center"><p id="013b"  ondblclick="message('Copied',500);CopyToClipboard('013b');" class="test">Function Test (X01) :   01750221968</p></td></tr>
+		<tr><td align="center"><p id="014b"  ondblclick="message('Copied',500);CopyToClipboard('014b');" class="test">In-Output Module  : 01750288271</p></td></tr>
+		<tr><td align="center"><p id="015b"  ondblclick="message('Copied',500);CopyToClipboard('015b');" class="test">In-Output Flat Cable  : 01750288271-C</p></td></tr>
+		<tr><td align="center"><p id="016b"  ondblclick="message('Copied',500);CopyToClipboard('016b');" class="test">In-Output Collector :  01750295447</p></td></tr>
+		<tr><td align="center"><p id="017b"  ondblclick="message('Copied',500);CopyToClipboard('017b');" class="test">Head Upper Transport :  01750291689</p></td></tr>
+		<tr><td align="center"><p id="018b"  ondblclick="message('Copied',500);CopyToClipboard('018b');" class="test">Head Chassis Transport :  01750291697</p></td></tr>
+		<tr><td align="center"><p id="019b"  ondblclick="message('Copied',500);CopyToClipboard('019b');" class="test">Head Middle Transport  : 01750291699</p></td></tr>
+		<tr><td align="center"><p id="020b"  ondblclick="message('Copied',500);CopyToClipboard('020b');" class="test">Head Lower Transport :  01750290512</p></td></tr>
+		<tr><td align="center"><p id="021b"  ondblclick="message('Copied',500);CopyToClipboard('021b');" class="test">Head Lower Transport 246  : 01750307726</p></td></tr>
+		<tr><td align="center"><p id="022b"  ondblclick="message('Copied',500);CopyToClipboard('022b');" class="test">Belt Drive Assembly (Inside HLT)  : 01750133367</p></td></tr>
+		<tr><td align="center"><p id="023b"  ondblclick="message('Copied',500);CopyToClipboard('023b');" class="test">Head Safe Transport :  01750298136</p></td></tr>
+		<tr><td align="center"><p id="024b"  ondblclick="message('Copied',500);CopyToClipboard('024b');" class="test">Camera Module Set  : 01750302850</p></td></tr>
+		<tr><td align="center"><p id="025b"  ondblclick="message('Copied',500);CopyToClipboard('025b');" class="test">Tape Sensor  : 01750266439</p></td></tr>
+		<tr><td align="center"><p id="026b"  ondblclick="message('Copied',500);CopyToClipboard('026b');" class="test">UV Sensor  : 01750293230</p></td></tr>
+		<tr><td align="center"><p id="027b"  ondblclick="message('Copied',500);CopyToClipboard('027b');" class="test">Magnet Sensor  : 01750295915</p></td></tr>
+		<tr><td align="center"><p id="028b"  ondblclick="message('Copied',500);CopyToClipboard('028b');" class="test">Real Storage  : 01750291701</p></td></tr>
+		<tr><td align="center"><p id="029b"  ondblclick="message('Copied',500);CopyToClipboard('029b');" class="test">Head Main Board  : 01750287366</p></td></tr>
+		<tr><td align="center" style="border-bottom: 3px solid black;">
+		                       <p id="030b"  ondblclick="message('Copied',500);CopyToClipboard('030b');" class="test">450H Escrow  : 01750291701</p></td></tr>
+		
+		
+		<!-- dispenser Safe-->
+		<tr><td rowspan="10" align="center"   style="border-bottom: 3px solid black;"><font size="-2">Dispenser Safe</font></td>
+		<td align="center">    <p id="031b"  ondblclick="message('Copied',500);CopyToClipboard('031b');" class="test">Feed Shaft :  01750106232</p></td></tr>
+		<tr><td align="center"><p id="032b"  ondblclick="message('Copied',500);CopyToClipboard('032b');" class="test">Dispense Stacking Unit (String) :  01750291752</p></td></tr>
+		<tr><td align="center"><p id="033b"  ondblclick="message('Copied',500);CopyToClipboard('033b');" class="test">Safe Distribution Transport :  01750293073</p></td></tr>
+		<tr><td align="center"><p id="034b"  ondblclick="message('Copied',500);CopyToClipboard('034b');" class="test">Safe Vertical Transport :  0175029335</p></td></tr>
+		<tr><td align="center"><p id="035b"  ondblclick="message('Copied',500);CopyToClipboard('035b');" class="test">ALL In Box  : 01750292967</p></td></tr>
+		<tr><td align="center"><p id="036b"  ondblclick="message('Copied',500);CopyToClipboard('036b');" class="test">Safe Chassis pre-assed  : 01750300723</p></td></tr>
+		<tr><td align="center"><p id="037b"  ondblclick="message('Copied',500);CopyToClipboard('037b');" class="test">PCBA RM3P Safe Controller :  01750287368</p></td></tr>
+		<tr><td align="center"><p id="038b"  ondblclick="message('Copied',500);CopyToClipboard('038b');" class="test">FIB (Console) :  01750305474</p></td></tr>
+		<tr><td align="center"><p id="039b"  ondblclick="message('Copied',500);CopyToClipboard('039b');" class="test">EPP 08 :  1750303434</p></td></tr>
+		<tr><td align="center" style="border-bottom: 3px solid black;">
+		                       <p id="040b"  ondblclick="message('Copied',500);CopyToClipboard('040b');" class="test">PCBA RM3P MOVE Controller  : 01750287375</p></td></tr>
+		<!----Others---->
+		<tr><td rowspan="4" align="center"  ><font size="-2">Others</font></td>
+		<td align="center">    <p id="041b"  ondblclick="message('Copied',500);CopyToClipboard('041b');" class="test">Shutter :  01750143750</p></td></tr>
+		<tr><td align="center"><p id="042b"  ondblclick="message('Copied',500);CopyToClipboard('042b');" class="test">Shutter Board  : 01750149264</p></td></tr>
+		<tr><td align="center"><p id="043b"  ondblclick="message('Copied',500);CopyToClipboard('043b');" class="test">450H Touch Screen &amp; Bracket :  001750343663</p></td></tr>
+		<tr><td align="center"><p id="044b"  ondblclick="message('Copied',500);CopyToClipboard('044b');" class="test">450H DNS PCAP Controller  : 1750350310</p></td></tr>
+		</table>
+		<!-------->
+		
+		
+		
+		
+		
+		
+        <div class="header" id="header04">V6 Parts</div>
+        <div id="content04" class="content">
+		<!-------->
+		<table width="100%" class="myV6Parts">
+
+		<tr><th style="max-width: 5px; min-width:5px ; overflow: auto; "><font size="-2">Device</font></th><th  width="100%"><font size="-2">Part No.</font></th></tr>
+		<tr><td rowspan="7" align="center"     style="border-bottom: 3px solid black;"><font size="-2">Card Reader</font></td>
+		<td align="center">    <p id="001c"  ondblclick="message('Copied',500);CopyToClipboard('001c');" class="test">Antifish  :  1750304622-F</p></td></tr>
+		<tr><td align="center"><p id="002c"  ondblclick="message('Copied',500);CopyToClipboard('002c');" class="test">Magnetic Head  : 1750304622-35</p></td></tr>
+		<tr><td align="center"><p id="003c"  ondblclick="message('Copied',500);CopyToClipboard('003c');" class="test">Main Board :  1750304622-B </p></td></tr>
+		<tr><td align="center"><p id="004c"  ondblclick="message('Copied',500);CopyToClipboard('004c');" class="test">Gate :  1750304622-C</p></td></tr>
+		<tr><td align="center"><p id="005c"  ondblclick="message('Copied',500);CopyToClipboard('005c');" class="test">Smart Chip  :  1750304622-39</p></td></tr>
+		<tr><td align="center"><p id="006c"  ondblclick="message('Copied',500);CopyToClipboard('006c');" class="test">Chassis  : 1750304622</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="007c"  ondblclick="message('Copied',500);CopyToClipboard('007c');" class="test">CHD-mot ICT3H5-3AD2792 SecPac2  :  1750304622</p></td></tr>
+
+		<tr><td align="center"     style="border-bottom: 3px solid black;"><font size="-2">Receipt Printer</font></td>
+		<td style="border-bottom: 3px solid black;"align="center"> 
+		                      <p id="008c"  ondblclick="message('Copied',500);CopyToClipboard('008c');" class="test">Receipt Printer TP31  : 01750302898</p></td></tr>
+		
+		<tr><td align="center"     style="border-bottom: 3px solid black;"><font size="-2">Journal Printer</font></td>
+		<td style="border-bottom: 3px solid black;"align="center"> 
+		                      <p id="009c"  ondblclick="message('Copied',500);CopyToClipboard('009c');" class="test">Journal Printer TP29  : 01750302907</p></td></tr>
+
+		<tr><td rowspan="9" align="center"     style="border-bottom: 3px solid black;"><font size="-2">Dispenser Head</font></td>
+		<td align="center">   <p id="010c"  ondblclick="message('Copied',500);CopyToClipboard('010c');" class="test">SDU V6 C :   01750310083</p></td></tr>
+		<tr><td align="center"><p id="011c"  ondblclick="message('Copied',500);CopyToClipboard('011c');" class="test">SDU V6 A :  01750342439</p></td></tr>
+		<tr><td align="center"><p id="012c"  ondblclick="message('Copied',500);CopyToClipboard('012c');" class="test">V6 Shutter :  01750304916</p></td></tr>
+		<tr><td align="center"><p id="013c"  ondblclick="message('Copied',500);CopyToClipboard('013c');" class="test">Stacker dispenser unit FL RL V6C : 01750310083</p></td></tr>
+		<tr><td align="center"><p id="014c"  ondblclick="message('Copied',500);CopyToClipboard('014c');" class="test">HT Head Transport FL RL :  01750310793</p></td></tr>
+		<tr><td align="center"><p id="015c"  ondblclick="message('Copied',500);CopyToClipboard('015c');" class="test">HT Head Transport TTW Short 89 :  01750310814</p></td></tr>
+		<tr><td align="center"><p id="016c"  ondblclick="message('Copied',500);CopyToClipboard('016c');" class="test">HT Head Transport TTW Long 246  : 01750310859</p></td></tr>
+		<tr><td align="center"><p id="017a"  ondblclick="message('Copied',500);CopyToClipboard('017c');" class="test">HST Head Safe Transport :  01750298136</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="018c"  ondblclick="message('Copied',500);CopyToClipboard('018c');" class="test">Paddle Wheels  : 01750310083</p></td></tr>
+
+		<tr><td rowspan="9" align="center"     style="border-bottom: 3px solid black;"><font size="-2">Dispenser Saf</font></td>
+		<td align="center"><p id="019c"  ondblclick="message('Copied',500);CopyToClipboard('019c');" class="test">SDT Safe Distribution Transport  :  01750312524</p></td></tr>
+		<tr><td align="center"><p id="020c"  ondblclick="message('Copied',500);CopyToClipboard('020c');" class="test">SDT Safe Distribution Transport (Without SRB) :  01750313763</p></td></tr>
+		<tr><td align="center"><p id="021c"  ondblclick="message('Copied',500);CopyToClipboard('021c');" class="test">RRB Reject Retract Box  : 01750314096</p></td></tr>
+		<tr><td align="center"><p id="022c"  ondblclick="message('Copied',500);CopyToClipboard('022c');" class="test">PCBA Safe Controller  : 01750312718</p></td></tr>
+		<tr><td align="center"><p id="023c"  ondblclick="message('Copied',500);CopyToClipboard('023c');" class="test">Upper Extractor  : 01750311477</p></td></tr>
+		<tr><td align="center"><p id="024c"  ondblclick="message('Copied',500);CopyToClipboard('024c');" class="test">Lower Extractor  : 01750311478</p></td></tr>
+		<tr><td align="center"><p id="025c"  ondblclick="message('Copied',500);CopyToClipboard('025c');" class="test">TMS (DDU Cable) :  01750310807</p></td></tr>
+		<tr><td align="center"><p id="026c"  ondblclick="message('Copied',500);CopyToClipboard('026c');" class="test">SCH Safe Chassis  : 01750310708</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="038c"  ondblclick="message('Copied',500);CopyToClipboard('038c');" class="test">V6 Dispenser Board :   01750304622</p></td></tr>
+
+		<tr><td rowspan="11" align="center" ><font size="-2">Others</font></td>
+		<td align="center">    <p id="027c"  ondblclick="message('Copied',500);CopyToClipboard('027c');" class="test">FIB (Console) :  01750305474</p></td></tr>
+		<tr><td align="center"><p id="028c"  ondblclick="message('Copied',500);CopyToClipboard('028c');" class="test">EPP 08  : 1750303434</p></td></tr>
+		<tr><td align="center"><p id="029c"  ondblclick="message('Copied',500);CopyToClipboard('029c');" class="test">Touch Screen 250C  : 01750330452</p></td></tr>
+		<tr><td align="center"><p id="030c"  ondblclick="message('Copied',500);CopyToClipboard('030c');" class="test">Touch Screen Controller 250C  : 1750350310</p></td></tr>
+		<tr><td align="center"><p id="031c"  ondblclick="message('Copied',500);CopyToClipboard('031c');" class="test">Customer Screen 250C :  01750301987</p></td></tr>
+		<tr><td align="center"><p id="032c"  ondblclick="message('Copied',500);CopyToClipboard('032c');" class="test">Cover Lock  : 01750156995</p></td></tr>
+		<tr><td align="center"><p id="033c"  ondblclick="message('Copied',500);CopyToClipboard('033c');" class="test">Turning Lever for Front door :  01750161273</p></td></tr>
+		<tr><td align="center"><p id="034c"  ondblclick="message('Copied',500);CopyToClipboard('034c');" class="test">DN 490c Customer Screen  : 1750333109</p></td></tr>
+		<tr><td align="center"><p id="035c"  ondblclick="message('Copied',500);CopyToClipboard('035c');" class="test">DN 250c Touch Screen  : 01750330452</p></td></tr>
+		<tr><td align="center"><p id="036c"  ondblclick="message('Copied',500);CopyToClipboard('036c');" class="test">DN 250c Touch DNS PCAP Controller :  1750350310</p></td></tr>
+		<tr><td align="center"><p id="037c"  ondblclick="message('Copied',500);CopyToClipboard('037c');" class="test">DN 250c Screen :  01750301987</p></td></tr>
+		</table>
+		
+		
+		
+		
+		
+		<!-------->
+          <div class="header" id="header05">Diebold Parts</div>
+          <div id="content05" class="content">
+		<!-------->
+		<table width="100%" class="myDieboldParts">
+		<tr><th style="max-width: 5px; min-width: 5px ; overflow: auto; "><font size="-2">Device</font></th><th width="100%"><font size="-2">Part No.</font></th></tr>
+
+		<tr><td rowspan="6" align="center"  style="border-bottom: 3px solid black;"><font size="-2">Card Reader</font></td>
+		<td align="center">    <p id="001d"  ondblclick="message('Copied',500);CopyToClipboard('001d');" class="test">Card Reader with ASD  :  00-104380-000K</p></td></tr>
+		<tr><td align="center"><p id="002d"  ondblclick="message('Copied',500);CopyToClipboard('002d');" class="test">Card Reader Without ASD  : 00104378000D</p></td></tr>
+		<tr><td align="center"><p id="003d"  ondblclick="message('Copied',500);CopyToClipboard('003d');" class="test">Card Reader Belt :  49201480000A</p></td></tr>
+		<tr><td align="center"><p id="004d"  ondblclick="message('Copied',500);CopyToClipboard('004d');" class="test">New Card Reader Board  : 89030934000A</p></td></tr>
+		<tr><td align="center"><p id="005d"  ondblclick="message('Copied',500);CopyToClipboard('005d');" class="test">Magnetic Head with Board  : 49252159000A</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="006d"  ondblclick="message('Copied',500);CopyToClipboard('006d');" class="test">Magnetic Head  :  89031300000A</p></td></tr>
+
+		<tr><td rowspan="4" align="center"    style="border-bottom: 3px solid black;"><font size="-2">Receipt Printer</font></td>
+		<td align="center">    <p id="007d"  ondblclick="message('Copied',500);CopyToClipboard('007d');" class="test">Graphical Receipt Printer  :  49223820000A</p></td></tr>
+		<tr><td align="center"><p id="008d"  ondblclick="message('Copied',500);CopyToClipboard('008d');" class="test">Enhanced Receipt Printer  : 49257458000B</p></td></tr>
+		<tr><td align="center"><p id="009d"  ondblclick="message('Copied',500);CopyToClipboard('009d');" class="test">Receipt Printer Belt  : 49200585000A</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="010d"  ondblclick="message('Copied',500);CopyToClipboard('010d');" class="test">Receipt Printer Board 1,2  :  39015109000B / 39015104000B</p></td></tr>
+	
+		<tr><td rowspan="3" align="center"  style="border-bottom: 3px solid black;"><font size="-2">Journal Printer</font></td>
+		<td align="center">    <p id="011d"  ondblclick="message('Copied',500);CopyToClipboard('011d');" class="test">Old Journal printer  :  49247984000A</p></td></tr>
+		<tr><td align="center"><p id="012d"  ondblclick="message('Copied',500);CopyToClipboard('012d');" class="test">New Journal Printer  : 00155446000A / 49209561006A</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="013d"  ondblclick="message('Copied',500);CopyToClipboard('013d');" class="test">journal spindle shaft  :  49204644009A</p></td></tr>
+
+		<tr><td rowspan="3" align="center"   style="border-bottom: 3px solid black;"><font size="-2">Screens</font></td>
+		<td align="center">    <p id="014d"  ondblclick="message('Copied',500);CopyToClipboard('014d');" class="test">New Consumer Screen  :  49240520000</p></td></tr>
+		<tr><td align="center"><p id="015d"  ondblclick="message('Copied',500);CopyToClipboard('015d');" class="test">Consumer screen  : 49201789000F</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="016d"  ondblclick="message('Copied',500);CopyToClipboard('016d');" class="test">Operator Screen  : 49240457000A</p></td></tr>
+
+		<tr><td rowspan="6" align="center"   style="border-bottom: 3px solid black;"><font size="-2">EPP &amp; FDK</font></td>
+		<td align="center">    <p id="017d"  ondblclick="message('Copied',500);CopyToClipboard('017d');" class="test">EPP 5 BSC  :  492166681700E</p></td></tr>
+		<tr><td align="center"><p id="018d"  ondblclick="message('Copied',500);CopyToClipboard('018d');" class="test">EPP 5 PCI  : 49216680700A</p></td></tr>
+		<tr><td align="center"><p id="019d"  ondblclick="message('Copied',500);CopyToClipboard('019d');" class="test">EPP 5 Battery  : 119056654000A</p></td></tr>
+		<tr><td align="center"><p id="020d"  ondblclick="message('Copied',500);CopyToClipboard('020d');" class="test">EPP07  : 49249440700B</p></td></tr>
+		<tr><td align="center"><p id="021d"  ondblclick="message('Copied',500);CopyToClipboard('021d');" class="test">EPP07 bracket :  49226313000B</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="022d"  ondblclick="message('Copied',500);CopyToClipboard('022d');" class="test">FDK  :  00104789000A</p></td></tr>
+
+		<tr><td rowspan="12" align="center"  style="border-bottom: 3px solid black;"><font size="-2">Cages &amp; Others</font></td>
+		<td align="center">    <p id="023d"  ondblclick="message('Copied',500);CopyToClipboard('023d');" class="test">Old Cage  :  00103340240A</p></td></tr>
+		<tr><td align="center"><p id="024d"  ondblclick="message('Copied',500);CopyToClipboard('024d');" class="test">Canyon Cage :  49249260291A</p></td></tr>
+		<tr><td align="center"><p id="025d"  ondblclick="message('Copied',500);CopyToClipboard('025d');" class="test">Sierra Cage :  00105153301A</p></td></tr>
+		<tr><td align="center"><p id="026d"  ondblclick="message('Copied',500);CopyToClipboard('026d');" class="test">Denver Cage  : 00104812305D</p></td></tr>
+		<tr><td align="center"><p id="027d"  ondblclick="message('Copied',500);CopyToClipboard('027da');" class="test">Power supply device  : 19-054950-000A</p></td></tr>
+		<tr><td align="center"><p id="028d"  ondblclick="message('Copied',500);CopyToClipboard('028d');" class="test">Power Distribution unit 01 :  49211393000A</p></td></tr>
+		<tr><td align="center"><p id="029d"  ondblclick="message('Copied',500);CopyToClipboard('029d');" class="test">PDU 02 :  49218393000B</p></td></tr>
+		<tr><td align="center"><p id="030d"  ondblclick="message('Copied',500);CopyToClipboard('030d');" class="test">Vega Cable  : 49211498000B</p></td></tr>
+		<tr><td align="center"><p id="031d"  ondblclick="message('Copied',500);CopyToClipboard('031d');" class="test">VGA Card  : 39015197000A</p></td></tr>
+		<tr><td align="center"><p id="032d"  ondblclick="message('Copied',500);CopyToClipboard('032d');" class="test">Cage Power Supply :  49212552000B</p></td></tr>
+		<tr><td align="center"><p id="033d"  ondblclick="message('Copied',500);CopyToClipboard('033d');" class="test">Key Board  : 49221669000A</p></td></tr>
+		<tr><td style="border-bottom: 3px solid black;" align="center">
+		                       <p id="034d"  ondblclick="message('Copied',500);CopyToClipboard('034d');" class="test">USB Hub 7 ports  :  49211381000A</p></td></tr>
+
+		<tr><td rowspan="22" align="center" ><font size="-2">Dispenser</font></td>
+		<td align="center">    <p id="035d"  ondblclick="message('Copied',500);CopyToClipboard('035d');" class="test">Feed Wheel  :  49204018000A</p></td></tr>
+		<tr><td align="center"><p id="036d"  ondblclick="message('Copied',500);CopyToClipboard('036d');" class="test">Take Away :  49016971000F</p></td></tr>
+		<tr><td align="center"><p id="037d"  ondblclick="message('Copied',500);CopyToClipboard('037d');" class="test">Stripper  : 49016968000F</p></td></tr>
+		<tr><td align="center"><p id="038d"  ondblclick="message('Copied',500);CopyToClipboard('038d');" class="test">Paddle Wheel :  49201058000B</p></td></tr>
+		<tr><td align="center"><p id="039d"  ondblclick="message('Copied',500);CopyToClipboard('039d');" class="test">High Belt 4 Picker :  49204013000E</p></td></tr>
+		<tr><td align="center"><p id="040d"  ondblclick="message('Copied',500);CopyToClipboard('040d');" class="test">Presenter RL 860 :  49211436000A</p></td></tr>
+		<tr><td align="center"><p id="041d"  ondblclick="message('Copied',500);CopyToClipboard('041d');" class="test">Presenter Belt RL 860  : 29008482000J</p></td></tr>
+		<tr><td align="center"><p id="042d"  ondblclick="message('Copied',500);CopyToClipboard('042d');" class="test">CAM Rollers :  29008780000A</p></td></tr>
+		<tr><td align="center"><p id="043d"  ondblclick="message('Copied',500);CopyToClipboard('043d');" class="test">High Belt 5 Picker :  49204013000D</p></td></tr>
+		<tr><td align="center"><p id="044d"  ondblclick="message('Copied',500);CopyToClipboard('044d');" class="test">Snap Latch Pin for Green LED Picker :  49023555000C</p></td></tr>
+		<tr><td align="center"><p id="045d"  ondblclick="message('Copied',500);CopyToClipboard('045d');" class="test">Dispenser main Board  : 49208102000D</p></td></tr>
+		<tr><td align="center"><p id="046d"  ondblclick="message('Copied',500);CopyToClipboard('046d');" class="test">Stacker  : 49211433000A</p></td></tr>
+		<tr><td align="center"><p id="047d"  ondblclick="message('Copied',500);CopyToClipboard('047d');" class="test">Depositor Long Left :  00-104457-000A / 00-104453-000A</p></td></tr>
+		<tr><td align="center"><p id="048d"  ondblclick="message('Copied',500);CopyToClipboard('048d');" class="test">Picker with Green LED :  49211432000A</p></td></tr>
+		<tr><td align="center"><p id="049d"  ondblclick="message('Copied',500);CopyToClipboard('049d');" class="test">AFD Picker  : 49225262000A</p></td></tr>
+		<tr><td align="center"><p id="050d"  ondblclick="message('Copied',500);CopyToClipboard('050d');" class="test">CAPTURE ROLLAR DEPOT PART ONLY :  EZMRG3778010</p></td></tr>
+		<tr><td align="center"><p id="051d"  ondblclick="message('Copied',500);CopyToClipboard('051d');" class="test">ROLLER, ICT3Q5  : EZMRG4215010</p></td></tr>
+		<tr><td align="center"><p id="052d"  ondblclick="message('Copied',500);CopyToClipboard('052d');" class="test">Presenter FL 522 :  49211437000B</p></td></tr>
+		<tr><td align="center"><p id="053d"  ondblclick="message('Copied',500);CopyToClipboard('053d');" class="test">TCM Board  : 49-201152-000D</p></td></tr>
+		<tr><td align="center"><p id="054d"  ondblclick="message('Copied',500);CopyToClipboard('054d');" class="test">DIVERT DEFLECTOR :  49202783000B</p></td></tr>
+		<tr><td align="center"><p id="055d"  ondblclick="message('Copied',500);CopyToClipboard('055d');" class="test">Cover, key pad cassette :  49024312000A</p></td></tr>
+		<tr><td align="center"><p id="056d"  ondblclick="message('Copied',500);CopyToClipboard('056d');" class="test">Cam :  49201057000B</p></td></tr>
+		</table>
+		<!-------->
+		</div></div></div></div></div>
+		</div>
+		<!----------------------------------------->
+		<div id="content_11" class="hide">
+		<form action="#" onsubmit="Whats_Msg();return false"> 
+		<div class="nowrap">
+		<table border="0" width="210px">
+		<tr>
+		<td width="70px"><select id="project" required style="width: 68px;"><option value="">project</option><option value="New Installation">New Installation</option><option value="Relocation">Relocation</option></select></td>
+		<td width="70px"><select id="ATM_Account" required style="width: 80px;"><option value="">Account</option><option value="NBE">NBE</option><option value="BM">BM</option><option value="BDC">BDC</option><option value="ENPO">ENPO</option><option value="ABE">ABE</option><option value="BOA">BOA</option><option value="CAE">CAE</option><option value="FIB">FIB</option><option value="AWB">AWB</option><option value="SAIB">SAIB</option><option value="TUB">TUB</option><option value="NBK">NBK</option><option value="AB">AB</option><option value="HDB">HDB</option><option value="AIBK">AIBK</option><option value="CIB">CIB</option><option value="ADIB">ADIB</option><option value="EGB">EGB</option><option value="BRKA">BRKA</option><option value="QNB">QNB</option><option value="EALB">EALB</option><option value="EF">EF</option><option value="EURONET">EURONET</option><option value="AUB">AUB</option></select></td>
+		<td><input  type="text" onkeyup="this.value = this.value.toUpperCase();" id="Model" name="Model" placeholder="Model" size="1"></td>
+		</tr>
+		</table>
+		<table border="0" width="210px">
+		<tr>
+		<td><select id="installation_Project" required  style="width: 90px;">
+		<option value="">Project No.</option>
+		<optgroup label="NBE">
+		<option value="710988">SN: 53100*****</option>
+		<option value="710901">SN: 53101*****</option>
+		<option value="210105">SN: 53103*****</option>
+		<option value="190063">Other Wincor SNs</option>
+		</optgroup>
+		<optgroup label="BM">
+		<option value="150054">SN: 53100*****</option>
+		<option value="170026">SN: 53101*****</option>
+		<option value="200065">SN: 53102*****</option>
+		<option value="230053">SN: 53103*****</option>
+		</optgroup>
+		<optgroup label="BDC">
+		<option value="180195">SN: 531015***** </option>
+		<option value="200176">SN: 531023***** </option>
+		<option value="200270">SN: 531023***** </option>		
+		<option value="200270">SN: 531024***** </option>		
+		<option value="710956">All Diebold SNs </option>
+		</optgroup>
+		<optgroup label="AB">
+		<option value="170059">SN: 531010*****</option>
+		<option value="190243">SN: 531019*****</option>
+		<option value="190243">SN: 531020*****</option>
+		</optgroup>
+		<optgroup label="ENPO">
+		<option value="190072">SN: 531016*****</option>
+		<option value="190072">SN: 531017*****</option>
+		<option value="200098">SN: 531021*****</option>
+		</optgroup>
+		<optgroup label="NBK">
+		<option value="180183">All Wincor SNs </option>
+		<option value="710744">All Diebold SNs </option>
+		</optgroup>
+		<optgroup label="SAIB">
+		<option value="200043">SN: 531020*****</option>
+		<option value="200176">Other Wincor SNs </option>
+		</optgroup>
+		<optgroup label="ADIB">
+		<option value="710989">All Diebold SNs </option>
+		<option value="711077">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="FIB">
+		<option value="780072">All</option>
+		<option value="230053">53103*****</option>
+		</optgroup>
+		<optgroup label="AIBK">
+		<option value="220168">53104***** </option>
+		<option value="180090">ALL Wincor SNs </option>
+		</optgroup>
+		<optgroup label="BOA">
+		<option value="710990">All Wincor SNs </option>
+		<option value="711080">Others </option>
+		</optgroup>
+		<optgroup label="CAE">
+		<option value="710991">All</option>
+		</optgroup>
+		<optgroup label="CIB">
+		<option value="710971">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="EALB">
+		<option value="190200">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="EBE">
+		<option value="161005">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="EF">
+		<option value="710938">ALL Diebold SNs </option>
+		</optgroup>
+		<optgroup label="Euronet">
+		<option value="711014">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="HDB">
+		<option value="180066">All Wincor SNs </option>
+		<option value="710985">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="QNB">
+		<option value="710835">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="EGB">
+		<option value="711071">All </option>
+		</optgroup>
+		<optgroup label="NBK">
+		<option value="200200">Wincor </option>
+		</optgroup>
+		</select></td>
+		<td><select id="Governate" required style="width: 106px;"><option value="">Governate</option><option value="Alexandria">Alexandria</option><option value="Aswan">Aswan</option><option value="Asyut">Asyut </option><option value="Beheira">Beheira</option><option value="Beni Suef">Beni Suef</option><option value="Cairo">Cairo</option><option value="Dakahlia">Dakahlia</option><option value="Damietta">Damietta</option><option value="Faiyum">Faiyum</option><option value="Gharbia">Gharbia</option><option value="Giza">Giza</option><option value="Ismailia">Ismailia</option><option value="Kafr El Sheikh">Kafr El Sheikh</option><option value="Luxor">Luxor</option><option value="Matruh">Matruh</option><option value="Minya">Minya</option><option value="Monufia">Monufia</option><option value="New Valley">New Valley</option><option value="North Sinai">North Sinai</option><option value="Port Said">Port Said</option><option value="Qalyubia">Qalyubia</option><option value="Qena">Qena</option><option value="Red Sea">Red Sea</option><option value="Sharqia">Sharqia</option><option value="Sohag">Sohag</option><option value="South Sinai">South Sinai</option><option value="Suez">Suez</option></select></td>
+		</tr>
+		</table>
+		<input  type="text" inputmode="numeric" id="Serial_Number" name="Serial_Number" placeholder="SN" size="23"><br>
+        <input  type="text" id="ATM_Name" name="ATM_Name" placeholder="ATM Name" size="23"><br>
+		<input  type="text" id="Address" name="Address" placeholder="Address" size="23"><br></div>	
+
+
+		<textarea type="text" id="Whats_Msg_PCname" name="Whats_Msg_PCname" cols="25" rows="15"></textarea><br>
+		<button type = "submit" onclick="copy()">Copy</button>
+		</table>
+		</form>
+		
+		
+		</div>
+		
+		
+		<!------The top element of the page And clock-------->
+		
+		<div class="FixedDrobdownMenue">
+		<table border="0" width="100%">
+		<tr><th width="80px" height="33px" align="left" valign="top" padding="0"><div class="raya"><span style="opacity: 0;">.</div></th>
+		<td style="overflow-x: auto;" align="right">
+        <select  id="target"  onchange="hide()" style="width: 50px; height: 40px;" class="dropdown-toggle">
+        <option value="" align="center">MENU</option>  
+		<optgroup label="Data generator">
+        <option value="content_1">NBE</option>
+        <option value="content_2">BM</option>
+		<option value="content_4">NI </option>
+		<option value="content_3">Enpo</option>
+        <option value="content_5">Other Accounts>>Standard Data Form</option>
+		</optgroup>
+		<optgroup label="Passwords">
+        <option value="content_7">Administrators</option>
+        <option value="content_8">BIOS </option>
+		</optgroup>
+		<optgroup label="Others">
+        <option value="content_6">DESKEYS</option>
+        <option value="content_9">TOOLS & Applications</option>
+        <option value="content_10">ATM Parts</option>
+        <option value="content_11">Whats App Msg</option>
+		</optgroup>
+        </select></td></tr>
+		<tr><td colspan="2"style="background: #CCC"><B><div align="center" id="clock"></div></B></td></tr>
+		</table>
+		</div>
+<!---------------------------------------------------------><!---------------------------------------------------------><!--------------------------------------------------------->
+	</div> <!--Login div that hide contents-><!-- the end of login div dont clear-->
+<!---------------------------------------------------------><!---------------------------------------------------------><!--------------------------------------------------------->
+<!-- login code-->
+		<div class="allergan box"><div id="ae-input" >
+		<table border="0" Width="100%">
+		<tr><td colspan="2" align="center"><b>DN ATM Tools</b><div id="demo" style="font-family: 'Brush Script MT', cursive; font-size:18px;"></div>
+		<br><br></td></tr>
+		<tr><td Width="50%"></td><td><div class="bat"></div></td></tr>
+		<tr><td colspan="2" align="center"><br><input type="Password" id="ae" style="width: 100%" class="lgin" placeholder="Enter Password"/></td></tr>
+		</table>
+		</div>
+		</div>
+<!----------------------------------------------------------------------------Code END--------------------------------------------------------------------------------------------->
+	
+</body>
+<script type="text/javascript" src="scripts.js"></script>
+</html>
