@@ -1,15 +1,34 @@
-	
-	
-	    function show_hide(element){
-            var myAnswer = element.nextElementSibling;
-			var displaySetting = myAnswer.style.display;
-            var quizButton = element;
-            if(displaySetting=="inline-block"){ myAnswer.style.display = 'none';}
-            else { myAnswer.style.display = 'inline-block';}
-									}
-		 
-	////////////////////////////////////
+	///////////////////////////////////clock
 
+		function startTime() {
+			const today = new Date();
+			let h = today.getHours();
+			let m = today.getMinutes();
+			let s = today.getSeconds();
+			let D = today.getDate(); 
+			let M = today.getMonth() + 1;
+			let Y =today.getFullYear();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('clock').innerHTML =  h + ":" + m + ":" + s +"  "+ D + "/" + M + "/" + Y;
+			setTimeout(startTime, 1000);
+							}
+		function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+							}
+		const time = new Date().getHours();
+		let greeting;
+			if (time < 10) {
+				greeting = "Good morning";
+				} else if (time < 20) {
+				greeting = "Good day";
+			} else {
+			greeting = "Good evening";
+				}
+	document.getElementById("demo").innerHTML = greeting;
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//golobal variables
 		const lyn1	 	= '@echo y | reg add "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Wincor Nixdorf\\ProTopas\\CurrentVersion\\LYNXPAR\\CASH_DISPENSER" /v VALUE_1 /t REG_SZ /d ';
 		const lyn2 		= '@echo y | reg add "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Wincor Nixdorf\\ProTopas\\CurrentVersion\\LYNXPAR\\CASH_DISPENSER" /v VALUE_2 /t REG_SZ /d ';
@@ -22,9 +41,12 @@
 		const Peer		='@echo y | reg add "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Wincor Nixdorf\\ProTopas\\CurrentVersion\\CCOPEN\\COMMUNICATION\\TCPIP\\PROJECT" /v REMOTEPEER /t REG_SZ /d ';
 		const Wallet	='@echo y | reg add "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\RAYA\\BMMOBWLT" /v ATMID /t REG_SZ /d ';
 		
+		
+		
+		
+		
 		// Fetch all the details element.
 		const details = document.querySelectorAll("details");
-
 		// Add the onclick listeners.
 		details.forEach((targetDetail) => {
 		targetDetail.addEventListener("click", () => {
@@ -37,13 +59,56 @@
 		});	
 		});
 		
-		//show and hide of dib div functions  
-		function hide() {document.getElementById('dip').style.visibility = 'hidden';}
-		function show() {document.getElementById('dip').style.visibility = 'visible';}
 		
-		///////////////////////////// drob down menue///////////////////////////////////
-		//show select div only  for "target" select id
-		document.getElementById('target').addEventListener('change',function (){'use strict';var vis = document.querySelector('.vis'),target = document.getElementById(this.value);if (vis !== null) {vis.className = 'hide';}if (target !== null ){target.className = 'vis';}});
+/////////////////////////////////////////////////////// drobdown menu ////////////////////////////////////////////////////////////////
+//show select div only  for "target" select id
+		document.getElementById('target')
+		.addEventListener('change',function (){
+			'use strict';var vis = document.querySelector('.vis'),target = document.getElementById(this.value);
+			if (vis !== null) {vis.className = 'hide';}
+			if (target !== null ){target.className = 'vis';
+			if(this.value == "content_1"){};
+			if(this.value == "content_2"){};
+			if(this.value == "content_3"){};
+			if(this.value == "content_4"){};
+			if(this.value == "content_5"){};
+			if(this.value == "content_6"){};
+			if(this.value == "content_7"){};
+			if(this.value == "content_8"){};
+			if(this.value == "content_9"){};
+			if(this.value == "content_10"){alrt_ATMPart(5000);};
+			if(this.value == "content_11"){};
+			if(this.value == "content_12"){};}
+			
+			
+			
+			
+			
+			
+			
+			});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
 		
 		
 		///////////////////NBE .REG AND .bat data entry and download
@@ -436,43 +501,7 @@
 								
 								
 								
-///////////////////////////////////clock
 
-		function startTime() {
-			const today = new Date();
-			let h = today.getHours();
-			let m = today.getMinutes();
-			let s = today.getSeconds();
-			let D = today.getDate(); 
-			let M = today.getMonth() + 1;
-			let Y =today.getFullYear();
-			m = checkTime(m);
-			s = checkTime(s);
-			document.getElementById('clock').innerHTML =  h + ":" + m + ":" + s +"  "+ D + "/" + M + "/" + Y;
-			setTimeout(startTime, 1000);
-							}
-
-		function checkTime(i) {
-			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-			return i;
-							}
-							
-							
-							
-							
-							
-
-
-	const time = new Date().getHours();
-		let greeting;
-			if (time < 10) {
-				greeting = "Good morning";
-				} else if (time < 20) {
-				greeting = "Good day";
-			} else {
-			greeting = "Good evening";
-				}
-	document.getElementById("demo").innerHTML = greeting;
 	
 	
 	
@@ -492,15 +521,14 @@ d.onclick = function(){ message("close",500); };
 
 
 
-////////////////////////////////////////////////search fn
 		
-		
+/////////////// alerts for all pages		
 								
-function alrt(msg,duration)
+function alrt_ATMPart(duration)
 {
      var el = document.createElement("div");
      el.setAttribute("style","position:fixed;top:150px;left:0px;background-color:green;color:white;font-weight: bold; padding: 20px 0px 20px 0px;opacity: 1;width:100%; text-align: center;border-style: 3px solid red;");
-     el.innerHTML = msg;
+     el.innerHTML = 'Double Click On Part Name For Copying';
      setTimeout(function(){
       el.parentNode.removeChild(el);
      },duration);
