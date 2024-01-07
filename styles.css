@@ -7,11 +7,11 @@ select {
    appearance: none;
 }
 
-form { margin: 0; padding: 0;  max-width: 500px;
+form { margin: 0; padding: 0;
  }
-input:read-only { background-color: #ccc;   max-width: 500px;
+input:read-only { background-color: #ccc;
 }
-input, select, textarea{ font-weight:bold;  max-width: 500px;
+input, select, textarea{ font-weight:bold;
 }
 .part {
   margin: 10px;
