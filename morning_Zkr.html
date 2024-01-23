@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
 <style>
+
 * {box-sizing: border-box}
 body { margin:0;  background: #f1f1f1f1;}
 
@@ -344,6 +345,43 @@ q {font-style: italic;}
 	<div style="position: fixed; bottom: 10px; left: 5px; right: 5px;"><button id="increment" onclick="goldClick(f);" class="increament"></button></div>
 	
  <!-- اذكار الصباح النهاية-->
+
+
+
+	<script>
+function updateLockButton() {
+  const lockButton = document.getElementById("button");
+  const newOrientation = getOppositeOrientation();
+  lockButton.textContent = `Lock to ${newOrientation}`;
+}
+
+function getOppositeOrientation() {
+  return screen
+    .orientation
+    .type
+    .startsWith("portrait") ? "landscape" : "portrait";
+}
+
+async function rotate(lockButton) {
+  if (!document.fullscreenElement) {
+    await document.documentElement.requestFullscreen();
+  }
+  const newOrientation = getOppositeOrientation();
+  await screen.orientation.lock(newOrientation);
+  updateLockButton(lockButton);
+}
+
+screen.orientation.addEventListener("change", updateLockButton);
+
+window.addEventListener("load", updateLockButton);
+</script>
+
+<button onclick="rotate(this)" id="button">
+  Lock to...
+</button>
+<button onclick="screen.orientation.unlock()">
+  Unlock
+</button>
 	</body>
 	<script type="text/javascript" src="scripts.js"></script>
 	<script>
