@@ -76,6 +76,11 @@
 		<div id="ae-form">
 		<!--beginning of the DrobMenu-->
 		<hr style="height:43px; visibility:hidden;" />
+		
+				
+		
+		
+		
 		<!--------------------NBE data input main DrobMenu-------------------->
 		<div>
 		<!-- for all accounts Data generators -->
@@ -1287,13 +1292,18 @@
 		</div></div>
 		
 		
+		
+		
+		
+		
+		
 		<!------The top element of the page And clock-------->
 		
 		<div class="FixedDrobdownMenue">
 		<table border="0" width="100%">
 		<tr><th width="80px" height="29px" align="left" valign="top" padding="0"><div class="raya"><span style="opacity: 0;">.</div></th>
 		<td style="overflow-x: auto;" align="right">
-        <select  id="target"  onchange="hide()" style="width: 50px; height: 29px;" class="dropdown-toggle">
+        <select  id="target"  onchange="miva('hideme'),hide()" style="width: 50px; height: 29px;" class="dropdown-toggle"  >
         <option value="" align="center">MENU</option>  
 		<optgroup align="center" label="Data generator">
         <option align="left" value="content_1">NBE</option>
@@ -1319,6 +1329,9 @@
 </div></B></font></td></tr>
 		</table>
 		</div>
+		
+		<div id="hideme"><strong>Warning:</strong>These are new products</div>
+
 <!---------------------------------------------------------><!---------------------------------------------------------><!--------------------------------------------------------->
 	</div> <!--Login div that hide contents-><!-- the end of login div dont clear-->
 <!---------------------------------------------------------><!---------------------------------------------------------><!--------------------------------------------------------->
@@ -1334,9 +1347,22 @@
 		</div>
 <!----------------------------------------------------------------------------Code END--------------------------------------------------------------------------------------------->
 
+
+
+
 <table width="100%" border="0"><tr><td><div align="center" style="background: #CCC"><p id="load_time"></p></div></td></tr></table>
 
 
+
+
+<script>
+function miva(obj) {
+
+    var el = document.getElementById(obj);
+
+        el.style.display = 'none';
+
+}</script>
 <Script>
 //calculate the time before calling the function in window.onload
 var beforeload = (new Date()).getTime();
