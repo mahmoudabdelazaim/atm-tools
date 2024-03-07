@@ -60,7 +60,7 @@ main { padding: 0;}
 
 
 
-/******************************************/
+/***************** for ATM Parts*************************/
 
 
 
@@ -70,8 +70,19 @@ tr.hidden {
 }
 
 
-
-
 .DeviceNameStyle { white-space: nowrap; overflow: auto; width: 100px; }
 .DeviceTypeStyle { white-space: nowrap; overflow: auto; width: 80px; }
-.DeviceModelStyle { white-space: nowrap; overflow: auto; width: 50px; }
+.DeviceModelStyle { white-space: nowrap; overflow: auto; width: 70px; }
+
+.partsTable  {
+    border-collapse: collapse;
+	margin: 1em 0;
+    th, td {
+        padding: 5px 10px;
+	border: 1px solid #999;
+    }
+	th {
+	background-color: #eee;
+	padding: 10px;
+}
+}
