@@ -70,7 +70,7 @@ tr.hidden {
 }
 
 
-.DeviceNameStyle { white-space: nowrap; overflow: auto; width: 100px; }
+.DeviceNameStyle { white-space: nowrap; overflow: auto; width: 150px; }
 .DeviceTypeStyle { white-space: nowrap; overflow: auto; width: 80px; }
 .DeviceModelStyle { white-space: nowrap; overflow: auto; width: 70px; }
 
