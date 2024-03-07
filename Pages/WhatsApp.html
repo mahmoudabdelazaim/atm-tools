@@ -1,0 +1,118 @@
+<div align="center">Whats app Messages</div>
+	        <div align="center">
+		<form action="#" onsubmit="Whats_Msg();return false"> 
+		<div class="nowrap">
+		<table border="0" width="210px">
+		<tr>
+		<td width="70px"><select id="project" required style="width: 68px;"><option value="">project</option><option value="New Installation">New Installation</option><option value="Relocation">Relocation</option></select></td>
+		<td width="70px"><select id="ATM_Account" required style="width: 80px;"><option value="">Account</option><option value="NBE">NBE</option><option value="BM">BM</option><option value="BDC">BDC</option><option value="ENPO">ENPO</option><option value="ABE">ABE</option><option value="BOA">BOA</option><option value="CAE">CAE</option><option value="FIB">FIB</option><option value="AWB">AWB</option><option value="SAIB">SAIB</option><option value="TUB">TUB</option><option value="NBK">NBK</option><option value="AB">AB</option><option value="HDB">HDB</option><option value="AIBK">AIBK</option><option value="CIB">CIB</option><option value="ADIB">ADIB</option><option value="EGB">EGB</option><option value="BRKA">BRKA</option><option value="QNB">QNB</option><option value="EALB">EALB</option><option value="EF">EF</option><option value="EURONET">EURONET</option><option value="AUB">AUB</option></select></td>
+		<td><input  type="text" onkeyup="this.value = this.value.toUpperCase();" id="Model" name="Model" placeholder="Model" size="1"></td>
+		</tr>
+		</table>
+		<table border="0" width="210px">
+		<tr>
+		<td><select id="installation_Project" required  style="width: 90px;">
+		<option value="">Project No.</option>
+		<optgroup label="NBE">
+		<option value="710988">SN: 53100*****</option>
+		<option value="710901">SN: 53101*****</option>
+		<option value="210105">SN: 53103*****</option>
+		<option value="190063">Other Wincor SNs</option>
+		</optgroup>
+		<optgroup label="BM">
+		<option value="150054">SN: 53100*****</option>
+		<option value="170026">SN: 53101*****</option>
+		<option value="200065">SN: 53102*****</option>
+		<option value="230053">SN: 53103*****</option>
+		<option value="230046">SN: 53104*****</option>
+		</optgroup>
+		<optgroup label="BDC">
+		<option value="180195">SN: 531015***** </option>
+		<option value="711004">SN: new 531015***** </option>
+		<option value="200176">SN: 531023***** </option>
+		<option value="200270">SN: 531023***** </option>		
+		<option value="200270">SN: 531024***** </option>		
+		<option value="710956">All Diebold SNs </option>
+		</optgroup>
+		<optgroup label="AB">
+		<option value="170059">SN: 531010*****</option>
+		<option value="190243">SN: 531019*****</option>
+		<option value="190243">SN: 531020*****</option>
+		</optgroup>
+		<optgroup label="ENPO">
+		<option value="190072">SN: 531016*****</option>
+		<option value="190072">SN: 531017*****</option>
+		<option value="200098">SN: 531021*****</option>
+		</optgroup>
+		<optgroup label="NBK">
+		<option value="180183">All Wincor SNs </option>
+		<option value="710744">All Diebold SNs </option>
+		</optgroup>
+		<optgroup label="SAIB">
+		<option value="200043">SN: 531020*****</option>
+		<option value="200176">Other Wincor SNs </option>
+		</optgroup>
+		<optgroup label="ADIB">
+		<option value="710989">All Diebold SNs </option>
+		<option value="711077">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="FIB">
+		<option value="780072">All</option>
+		<option value="230053">53103*****</option>
+		</optgroup>
+		<optgroup label="AIBK">
+		<option value="220168">53104***** </option>
+		<option value="180090">ALL Wincor SNs </option>
+		</optgroup>
+		<optgroup label="BOA">
+		<option value="710990">All Wincor SNs </option>
+		<option value="711080">Others </option>
+		</optgroup>
+		<optgroup label="CAE">
+		<option value="710991">All</option>
+		</optgroup>
+		<optgroup label="CIB">
+		<option value="710971">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="EALB">
+		<option value="190200">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="EBE">
+		<option value="161005">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="EF">
+		<option value="710938">ALL Diebold SNs </option>
+		</optgroup>
+		<optgroup label="Euronet">
+		<option value="711014">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="HDB">
+		<option value="230162">53104*****</option>
+		<option value="180066">All Wincor SNs </option>
+		<option value="710985">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="QNB">
+		<option value="710835">All Wincor SNs </option>
+		</optgroup>
+		<optgroup label="EGB">
+		<option value="711071">All </option>
+		</optgroup>
+		<optgroup label="NBK">
+		<option value="200200">Wincor </option>
+		</optgroup>
+		</select></td>
+		<td><select id="Governate" required style="width: 106px;"><option value="">Governate</option><option value="Alexandria">Alexandria</option><option value="Aswan">Aswan</option><option value="Asyut">Asyut </option><option value="Beheira">Beheira</option><option value="Beni Suef">Beni Suef</option><option value="Cairo">Cairo</option><option value="Dakahlia">Dakahlia</option><option value="Damietta">Damietta</option><option value="Faiyum">Faiyum</option><option value="Gharbia">Gharbia</option><option value="Giza">Giza</option><option value="Ismailia">Ismailia</option><option value="Kafr El Sheikh">Kafr El Sheikh</option><option value="Luxor">Luxor</option><option value="Matruh">Matruh</option><option value="Minya">Minya</option><option value="Monufia">Monufia</option><option value="New Valley">New Valley</option><option value="North Sinai">North Sinai</option><option value="Port Said">Port Said</option><option value="Qalyubia">Qalyubia</option><option value="Qena">Qena</option><option value="Red Sea">Red Sea</option><option value="Sharqia">Sharqia</option><option value="Sohag">Sohag</option><option value="South Sinai">South Sinai</option><option value="Suez">Suez</option></select></td>
+		</tr>
+		</table>
+		<input  type="text" inputmode="numeric" id="Serial_Number" name="Serial_Number" placeholder="SN" size="23"><br>
+        <input  type="text" id="ATM_Name" name="ATM_Name" placeholder="ATM Name" size="23"><br>
+		<input  type="text" id="Address" name="Address" placeholder="Address" size="23"><br></div>	
+
+
+		<textarea type="text" id="Whats_Msg_PCname" name="Whats_Msg_PCname" cols="25" rows="15"></textarea><br>
+		<input type="submit" value="Generate Msg"></input><input type="button" onclick="CopyToClipboard('Whats_Msg_PCname');message('Copied',500)" value="copy"></input>
+		</table>
+		</form>
+		
+		
+		</div>
