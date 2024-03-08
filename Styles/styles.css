@@ -61,7 +61,7 @@ main { padding: 0;}
 
 
 /***************** for ATM Parts*************************/
-.DeviceNameStyle { white-space: nowrap; overflow: auto; width: 140px; }
+.DeviceNameStyle { white-space: nowrap; overflow: auto; width: 100px; }
 .DeviceTypeStyle { white-space: nowrap; overflow: auto; width: 80px; }
 .DeviceModelStyle { white-space: nowrap; overflow: auto; width: 65px; }
 
