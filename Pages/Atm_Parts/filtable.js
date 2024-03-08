@@ -27,7 +27,7 @@ $(document).ready(function() {
    /* decorative part */
     this.innerHTML = '<span style="color: red;">Copied</span>';
     /* arrow function doesn't modify 'this', here it's still the clicked button */
-    setTimeout( () => this.innerHTML = '<div style="white-space: nowrap; overflow: auto; width: 100px; ">'+clickedTdText+'</div>', 1000 );	  
+    setTimeout( () => this.innerHTML = '<div style="white-space: nowrap; overflow: auto; width: 150px; ">'+clickedTdText+'</div>', 1000 );	  
     })
   })
 });
