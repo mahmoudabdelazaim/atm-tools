@@ -43,6 +43,22 @@ $('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Ma
 $('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Real Storage : 01750291701</div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
 $('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Head Main Board : 01750287366</div></td>									<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
 $('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> 450H Escrow :01750291701</div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
+
+$('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Cover UV Sensor : 01750301015 </div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
+$('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> UV Sensor Prism : 01750293227 </div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
+$('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Flat Cable Upper Camera, Tape Sensor incl. Holder : 01750296744 </div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
+$('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Flat Cable Magnet Sensor : 01750295985 </div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
+$('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Flat Cable Lower Camera : 01750295984 </div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
+$('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Encoder, Speed Sensor : 01750296971 </div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
+$('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Sensor interlock 18 mm : 01750270694 </div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
+$('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Sensor interlock 18 mm gray assy (new) : 01750335437 </div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
+$('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Sensor interlock 28 mm : 01750270693 </div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
+$('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Sensor interlock 28 mm gray assy (new) : 01750335439 </div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Head</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
+
+
+
+
+
 // Dispenser Safe RM4
 $('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Feed Shaft : 01750106232</div></td>										<td align="center"><div class="DeviceTypeStyle">Dispenser Safe</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
 $('#data > tbody').append('<tr><td class="copy"><div Class="DeviceNameStyle"> Dispense Stacking Unit (String) : 01750291752</div></td>					<td align="center"><div class="DeviceTypeStyle">Dispenser Safe</div></td><td><div class="DeviceModelStyle">RM4</div></td></tr>');
