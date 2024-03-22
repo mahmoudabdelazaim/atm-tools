@@ -67,7 +67,7 @@ $('#CIB_A_Pass > tbody').append('<tr><td>Administrator</td><td>Wincor</td></tr>'
 
 //ADIB
 $('#ADIB_A_Pass > tbody').append('<tr><td>Administrator</td><td>Wincor@12345678</td></tr>');
-$('#ADIB_A_Pass > tbody').append('<tr><td>Administrator</td><td><font style="font-size: 14px;">K65e74a72P61m72a68S</font></td></tr>');
+$('#ADIB_A_Pass > tbody').append('<tr><td>Administrator</td><td style="font-size:11px">K65e74a72P61m72a68S</td></tr>');
 
 //EGB
 $('#EGB_A_Pass > tbody').append('<tr><td>administrator</td><td>BANK!@#bank123</td></tr>');
