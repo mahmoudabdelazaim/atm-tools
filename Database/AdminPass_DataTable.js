@@ -55,6 +55,7 @@ $('#AB_A_Pass > tbody').append('<tr><td>administrator</td><td>Wincor</td></tr>')
 
 //HDB
 $('#HDB_A_Pass > tbody').append('<tr><td>Administrator</td><td>WINCOR.1234wincor</td></tr>');
+$('#HDB_A_Pass > tbody').append('<tr><td>Administrator</td><td>wincor.1234WINCOR</td></tr>');
 
 //AIBK
 $('#AIBK_A_Pass > tbody').append('<tr><td>administrator</td><td>Wincor</td></tr>');
