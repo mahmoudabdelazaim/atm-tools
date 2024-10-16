@@ -122,7 +122,7 @@ h1 {
             font-size: 32px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 2; /* Ensure it stays above modal */
+            z-index: 1; /* Ensure it stays above modal */
  }
 .close:hover {
             color: rgba(255, 0, 255, 0.8); /* Slightly less transparent on hover */
