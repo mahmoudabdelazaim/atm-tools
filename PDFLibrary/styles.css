@@ -107,8 +107,7 @@ h1 {
     padding: 0;
     border: 1px solid #888;
     width: 100%;
-    /*max-width: 900px;*/
-    height: 90%;
+    height: 95%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     overflow: hidden;
