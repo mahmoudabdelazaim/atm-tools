@@ -115,6 +115,8 @@ h1 {
 }
  /* Half Transparent Close button */
 .close {
+	    display: none; /* Hidden by default */
+
 	color: rgba(255, 0, 255, 0.5); /* Half transparent white */
             position: auto;
             top: 200px;
