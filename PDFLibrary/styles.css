@@ -116,14 +116,12 @@ h1 {
 /* Half Transparent Close button */
 
 .close {
-    color: rgba(255, 255, 255, 0.5); /* Half transparent white */
-    position: fixed;
-    top: 20px;
-    left: 40px;
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 2; /* Ensure it stays above modal */
+position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 2em;
+            color: black;
+            cursor: pointer;
 }
 .close:hover {
     color: rgba(255, 255, 255, 0.8); /* Slightly less transparent on hover */
