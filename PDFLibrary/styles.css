@@ -123,9 +123,6 @@ position: absolute;
             color: black;
             cursor: pointer;
 }
-.close:hover {
-    color: rgba(255, 255, 255, 0.8); /* Slightly less transparent on hover */
-}
 /* Modal iframe styling */
 .modal iframe {
     width: 100%;
