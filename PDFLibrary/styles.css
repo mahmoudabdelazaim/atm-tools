@@ -117,7 +117,7 @@ h1 {
 .close {
 	color: rgba(255, 0, 255, 0.5); /* Half transparent white */
             position: fixed;
-            top: 90%;
+            top: 200px;
             right: 40px;
             font-size: 32px;
             font-weight: bold;
