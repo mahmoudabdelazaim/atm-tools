@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Library with Modal Preview</title>
+    <style>
+      /* General Reset and Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+    overflow-x: hidden;    
+    overflow-y: hidden;    
+}
+h1 {
+    margin-bottom: 20px;
+    font-size: 36px;
+    color: #2c3e50;
+    text-align: center;
+}
+/* Search Bar Styles */
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.search-container input {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+.search-container input:focus {
+    border-color: #2980b9;
+}
+.library {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+/* Book Card Styles */
+.book-card {
+    background-color: #fff;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center; /* Center the text */
+}
+.book-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+.book-card img {
+    width: 100%;  /* Fixed width */
+    height: 300px; /* Fixed height */
+    border-radius: 10px;
+    margin-bottom: 5px; /* Space below image */
+	border: 1px solid #7f8c8d; /* 5px thick solid black border */
+}
+.book-card h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #34495e;
+}
+.book-card p {
+    margin-bottom: 15px;
+    font-size: 12px;
+    color: #7f8c8d;
+}
+.preview-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.preview-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+}
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 100%;
+    /*max-width: 900px;*/
+    height: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+        .close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>PDF Library</h1>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search by title or author..." onkeyup="searchBooks()">
+    </div>
+
+    <div class="library" id="library">
+        <!-- Book entries will be dynamically inserted here -->
+    </div>
+
+    <!-- Modal for PDF Preview -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <iframe id="pdfFrame" src="" frameborder="0" width="100%" height="100%" allow="autoplay"></iframe>
+        </div>
+    </div>
+
+    <!-- Simple half-transparent close button -->
+    <span class="close" id="closeBtn" onclick="closeModal()">&times;</span>
+
+    <script>
+        // Example book data
+        const books = [
+           {
+                title: "CMD-V4 : Sensor & Actor Overview",
+                author: "Diebold Nixdorf",
+                image: "https://lh3.googleusercontent.com/pw/AP1GczMzrgB8flHrZLtu_LDAG-uowurH8WuY-HhSfHVAY6jciGQUMf-a4WqI5Gg2OuP9eCN629LwGHAbjXd_hV-kSkjnPDzufYvogA41j8-FiTkl8vfX_klhJkG7O9cBSi9DOU_Mh3O_wMwD0sigoqm0dsIt=w608-h786-s-no-gm?authuser=0",
+                pdf: "https://drive.google.com/file/d/1nr6tmJfhxwn9gMtU7O3yGexbaKgXbX9Y/preview"
+            },
+            {
+                title: "CMD-V4 : Engineer Service  Dispenser Repair Guide",
+                author: "Diebold Nixdorf",
+                image: "https://lh3.googleusercontent.com/pw/AP1GczP2Bf33UupgsoKU-cBM5QoIAbKg7RcoT0gTz9oAFFj5IU1W6F0C6re-QLtzUbMl6RgB2dRw3s685A9dj7hT600Wf8bNouxa8ks07LrH3zc0YSqmqmo9aYGBhEHvLDlpY0AslEgaqD2gHfQRHUYfX-CS=w632-h748-s-no-gm?authuser=0",
+                pdf: "https://drive.google.com/file/d/1TxzTCEpso0nJ0TDN1Ml7i-Z60iBFj2ee/preview"
+            },
+            {
+                title: "CMD-V4 : Manual 2",
+                author: "Diebold Nixdorf",
+                image: "https://lh3.googleusercontent.com/pw/AP1GczNawaOH77woaaee4I-C0x94HuwMesNUetP2THmxAlfg79CaLktcgsqp6sgKQOA0x0eKJSvEBP_nPWMV3otIY0TJm012Lavi95XjSpOzWYXxbXOrCQJRk03LcwaG_R_aZEFcxzWonIUr_v6usXA_Yhwz=w592-h743-s-no-gm?authuser=0",
+                pdf: "https://drive.google.com/file/d/1CjFVvyqeQzbDCNKxAigLobnPY2Y2zRuE/preview"
+            },
+            {
+                title: "CMD-V4 : Processes (schematic)",
+                author: "Diebold Nixdorf",
+                image: "https://lh3.googleusercontent.com/pw/AP1GczNawaOH77woaaee4I-C0x94HuwMesNUetP2THmxAlfg79CaLktcgsqp6sgKQOA0x0eKJSvEBP_nPWMV3otIY0TJm012Lavi95XjSpOzWYXxbXOrCQJRk03LcwaG_R_aZEFcxzWonIUr_v6usXA_Yhwz=w592-h743-s-no-gm?authuser=0",
+                pdf: "https://drive.google.com/file/d/1XrTjE9M921aUWE_CsLDqM7NvrHNDO1nw/preview"
+            },
+            {
+                title: "CMD-V4 : Service Manual",
+                author: "Diebold Nixdorf",
+                image: "https://lh3.googleusercontent.com/pw/AP1GczP94iPy0tv-mD7RvGgpeFNba_3h9nsTZCpPZYAjhXeZ83JhMs3z34Kc3PjD8Ami4qtX29sejHLd-BOqcOcRGEqG1mMMdsuW0qMnTtdBO9TNrOE7XLYqNNGoEhvYw_T4MZw3YVuYtNSNwuCfbT-v4uFX=w605-h736-s-no-gm?authuser=0",
+                pdf: "https://drive.google.com/file/d/1BSQlGN9Hdb77OgHokFSYRdAjk2jmFxqg/preview"
+            },
+            {
+                title: "CMD-V4: Cash Media Dispenser Version 4 Software Manual ",
+                author: "Diebold Nixdorf",
+                image: "https://lh3.googleusercontent.com/pw/AP1GczP94iPy0tv-mD7RvGgpeFNba_3h9nsTZCpPZYAjhXeZ83JhMs3z34Kc3PjD8Ami4qtX29sejHLd-BOqcOcRGEqG1mMMdsuW0qMnTtdBO9TNrOE7XLYqNNGoEhvYw_T4MZw3YVuYtNSNwuCfbT-v4uFX=w605-h736-s-no-gm?authuser=0",
+                pdf: "https://drive.google.com/file/d/1rntsyRIwx0orewDceTC-NS6CNeRi86En/preview"
+            },
+            {
+                title: "CCDM : Check / Cash Deposit Module Service Manual",
+                author: "Diebold Nixdorf",
+                image: "https://lh3.googleusercontent.com/pw/AP1GczPiLLPA-ue3mUtW396nC2s-1FatImaPprbM2Irh1I5NfKwR05UttvTiwXyh05wyn27-bJy1pxuvIlbh8IcBuUlgZrop_072OdJ-boUZzfl5O0jw-jDPTMZ5gPZgjkK9xxQfzj8LMCHY3L71cwuGXbit=w576-h726-s-no-gm?authuser=0",
+                pdf: "https://drive.google.com/file/d/16iflgTKBrsRBw3u-FWbpy8Gx7imil29U/preview"
+            },
+            {
+                title: "CCDM : Service Manual",
+                author: "Diebold Nixdorf",
+                image: "https://lh3.googleusercontent.com/pw/AP1GczPiLLPA-ue3mUtW396nC2s-1FatImaPprbM2Irh1I5NfKwR05UttvTiwXyh05wyn27-bJy1pxuvIlbh8IcBuUlgZrop_072OdJ-boUZzfl5O0jw-jDPTMZ5gPZgjkK9xxQfzj8LMCHY3L71cwuGXbit=w576-h726-s-no-gm?authuser=0",
+                pdf: "https://drive.google.com/file/d/1eYC1r6YnJCRz2IAxN6C_EmqquPfm4ldl/preview"
+            },
+            {
+                title: "CCDM : Device  Overview and Error Status Codes",
+                author: "Diebold Nixdorf",
+                image: "https://lh3.googleusercontent.com/pw/AP1GczOMvPQIIyDiZ-xgKtfcZdArX4HhDUJNigeCHN6Fyvk8yisd-DraIZUX3WuPcy7eHJs7VdvMYHDLxoiVI47vdnKl9cpngcpwy9Q6X6v5tTGP-Phl9nswnktGlCNi3ENnuNH8o2Yk3Rd21Et_4OKeqgQ2=w525-h734-s-no-gm?authuser=0",
+                pdf: "https://drive.google.com/file/d/1C1IHjTPyiOu3fFq-U-BUPT5HQZWAhNo6/preview"
+            },
+            {
+                title: "CINEO-2560 Service Manual",
+                author: "Diebold Nixdorf",
+                image: "https://lh3.googleusercontent.com/pw/AP1GczNeK98fHzm1vN-sB6qWhycG2UNXDA4W5mHJG8eHtJ7foTvwedKCe4F6cMyG_8eYN-uV4mqjed4P8hUtPpH4satrR86b9HKnUX7oTh-6bD3FTr-HMgTxEFpRNpsCys47xdRb61HvRuauKFOK554Rcv7u=w564-h704-s-no-gm?authuser=0",
+                pdf: "https://drive.google.com/file/d/1WwcaRBk-fq_kGgj-5mmeFsEznhGKgTHh/preview"
+            },
+            {
+                title: "",
+                author: "Diebold Nixdorf",
+                image: "",
+                pdf: ""
+            },
+            {
+                title: "",
+                author: "Diebold Nixdorf",
+                image: "",
+                pdf: ""
+            },
+            {
+                title: "",
+                author: "Diebold Nixdorf",
+                image: "",
+                pdf: ""
+            }
+            // Add more books as needed
+       
+
+
+	   ];
+
+        // Function to add books to the library
+        function addBookToLibrary(book) {
+            const library = document.getElementById("library");
+            const bookCard = document.createElement("div");
+            bookCard.className = "book-card";
+            bookCard.innerHTML = `
+                <img src="${book.image}" alt="${book.title} Cover">
+                <h3>${book.title}</h3>
+                <p>Author: ${book.author}</p>
+                <button class="preview-btn" onclick="openModal('${book.pdf}')">Preview Book</button>
+            `;
+            library.appendChild(bookCard);
+        }
+
+        // Load all books on page load
+        books.forEach(addBookToLibrary);
+
+        // Modal handling functions
+        function openModal(pdfUrl) {
+            const modal = document.getElementById("pdfModal");
+            const pdfFrame = document.getElementById("pdfFrame");
+            pdfFrame.src = pdfUrl;
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("pdfModal");
+            modal.style.display = "none";
+        }
+
+        // Search function
+        function searchBooks() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const bookCards = document.querySelectorAll('.book-card');
+            bookCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const author = card.querySelector('p').textContent.toLowerCase();
+                card.style.display = (title.includes(input) || author.includes(input)) ? 'block' : 'none';
+            });
+        }
+    </script>
+
+</body>
+</html>
