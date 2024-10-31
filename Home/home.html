@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Tools</title>
+</head>
+<body>
+    <div id="loader"><div class="circle"></div></div> <!-- Loader element -->
+	<!-- Password Form shows only once untill user delete coockies -->
+    <div id="password-container">
+        <h2>Please Enter Password</h2>
+        <input type="password" id="password-input" placeholder="Enter password">
+        <button id="submit-password">Submit</button>
+        <div id="error-message">Incorrect password. Try again!</div>
+    </div>
+	<!--Dropdown Menu this contents are hidden untill user Enter password-->
+    <div id="protected-content">
+        <select id="media-select" onchange="showContent()">
+            <option value="home" id="date-time" align="Center">Menu</option>
+            <optgroup label="ATM Tools">
+                <option value="ATM-Parts">ATM Parts</option>
+                <option value="Deskeys">Deskeys</option>
+                <option value="Admin-Passwords">Admin Passwords</option>
+                <option value="BIOS-Passwords">BIOS Passwords</option>
+                <option value="Error-Codes">ERROR Codes</option>
+            </optgroup>
+            <optgroup label="ATM Manuals">
+                <option value="Libraries">Libraries</option>
+                <option value="Portables">Portables</option>
+            </optgroup>
+        </select>
+        <!-- Content Sections -->
+        <div class="content active" id="home"><object class="body" type="text/html" data="Video-Library.html" width="100%" height="100%"></object></div>
+        <div class="content" id="ATM-Parts">2</div>
+        <div class="content" id="Deskeys">3</div>
+        <div class="content" id="Admin-Passwords">4</div>
+        <div class="content" id="BIOS-Passwords">5</div>
+        <div class="content" id="Error-Codes">6</div>
+        <div class="content" id="Libraries">7</div>
+        <div class="content" id="Portables">8</div>
+        <!-- Footer -->
+        <footer id="footer">
+            <p>&copy; 2024 Your Company. All Rights Reserved.</p>
+            <p id="loadingTime"></p>
+        </footer>
+    </div>
+    <script src="scripts.js" defer></script>
+</body>
+</html>
+ 

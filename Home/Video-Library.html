@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Library</title>
+    <style>
+	        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+			left: 0;
+			right: 0;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .home-icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .home-icon img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            filter: invert(45%) sepia(82%) saturate(332%) hue-rotate(138deg) brightness(90%) contrast(90%);
+            /* You can tweak these values to change the icon's color */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: flex-start; /* Align the modal to the top */
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 0;
+            width: 90%;
+            position: relative;
+            margin-top: 0; /* Push the modal down a bit from the top */
+			margin-bottom: 20;
+        }
+        .modal iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        .close {
+			color: rgba(255, 255, 255, 0.5); /* Half transparent white */
+            position: fixed;
+            top: 95%;
+            right: 50%;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2; /* Ensure it stays above modal */
+ }
+.close:hover {
+            color: rgba(255, 255, 255, 0.8); /* Slightly less transparent on hover */
+ }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="home-icon">
+            <a href="index.html"><img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home"></a>
+        </div>
+        <h1>Video Library</h1>
+    </header>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for a video..." onkeyup="filterVideos()">
+        </div>
+
+        <div class="card-container" id="videoCards">
+            <!-- Cards will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="videoModal" onclick="closeModalOnOutsideClick(event)">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <iframe id="videoPlayer" src="" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Array to hold video data
+        const videoData = [
+            {
+                title: 'HLT RM4',
+                thumbnail: 'https://www.atmrmg.com/photo/pt174636085-atm_machine_parts_rm4_diebold_nixdorf_dn_hlt_head_lower_transport_01750290512_1750290512.jpg',
+                url: 'https://drive.google.com/file/d/1ZOmrs6m9tXup64ndgOm0eAX_KQ7f0Tvw/preview'
+            },
+            {
+                title: 'Video 2',
+                thumbnail: 'https://via.placeholder.com/250x150',
+                url: 'https://drive.google.com/file/d/FILE_ID2/preview'
+            },
+            {
+                title: 'Video 3',
+                thumbnail: 'https://via.placeholder.com/250x150',
+                url: 'https://drive.google.com/file/d/FILE_ID3/preview'
+            }
+        ];
+
+        // Function to dynamically create and add video cards to the DOM
+        function loadVideos() {
+            const videoCardsContainer = document.getElementById('videoCards');
+
+            videoData.forEach((video) => {
+                // Create card div
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-title', video.title);
+
+                // Set the card HTML
+                card.innerHTML = `
+                    <img src="${video.thumbnail}" alt="${video.title}">
+                    <h3>${video.title}</h3>
+                `;
+
+                // Add event listener to open the modal when the card is clicked
+                card.addEventListener('click', () => {
+                    openModal(video.url);
+                });
+
+                // Append the card to the container
+                videoCardsContainer.appendChild(card);
+            });
+        }
+
+        // Function to open the modal and play the video
+        function openModal(videoUrl) {
+            document.getElementById('videoPlayer').src = videoUrl;
+            document.getElementById('videoModal').style.display = 'flex';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('videoPlayer').src = '';
+            document.getElementById('videoModal').style.display = 'none';
+        }
+
+        // Function to close the modal when clicking outside the content
+        function closeModalOnOutsideClick(event) {
+            const modalContent = document.querySelector('.modal-content');
+            if (!modalContent.contains(event.target)) {
+                closeModal();
+            }
+        }
+
+        // Function to filter video cards by title
+        function filterVideos() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                if (title.includes(input)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Load videos when the page loads
+        window.onload = loadVideos;
+    </script>
+
+</body>
+</html>
