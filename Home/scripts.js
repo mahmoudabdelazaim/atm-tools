@@ -1,6 +1,6 @@
 // CSS styles
 const styles = `
-* { margin: 0; padding: 0; overflow: hidden; /* Hides both scrollbars */}
+* { margin: 0; padding: 0; /*overflow: hidden;*/ /* Hides both scrollbars */}
 body { font-family: 'Poppins', sans-serif; background: #f4f4f9; color: #333; text-align: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 #loader { position: fixed; inset: 0; background: rgba(255,255,255,0.8); display: flex; justify-content: center; align-items: center; z-index: 9999; }
 .circle { border: 5px solid #f3f3f3; border-top: 5px solid #4a90e2; border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; }
