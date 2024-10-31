@@ -47,12 +47,13 @@ function loadSavedSelection() {
     }
 }
 
-// Update and display current date and time
 function updateTime() {
     const now = new Date();
+    const hoursAndMinutes = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     document.getElementById('date-time').textContent = 
-        `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}, ${now.toLocaleTimeString()}`;
+        `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}, ${hoursAndMinutes}`;
 }
+
 
 setTimeout(() => {
     document.getElementById('loader').style.display = 'none';
