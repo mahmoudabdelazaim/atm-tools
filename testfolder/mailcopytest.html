@@ -134,10 +134,18 @@
         function showInputField() {
             const selectedField = document.getElementById("dataDropdown").value;
             const inputGroup = document.getElementById("selectedFieldGroup");
+            const selectedInput = document.getElementById("selectedFieldInput");
+
             if (selectedField) {
-                document.getElementById("selectedFieldInput").placeholder = `Enter new ${selectedField}`;
+                // Set the placeholder and value for the input field
+                selectedInput.placeholder = `Enter new ${selectedField}`;
+                selectedInput.setAttribute("data-field", selectedField);
+
+                // Get the current value from the table and set it in the input
+                const currentValue = document.getElementById("table" + selectedField.charAt(0).toUpperCase() + selectedField.slice(1)).innerText;
+                selectedInput.value = currentValue !== "N/A" && currentValue !== "New" ? currentValue : ""; // Clear input if it's a placeholder value
+
                 inputGroup.style.display = "block";
-                document.getElementById("selectedFieldInput").setAttribute("data-field", selectedField);
             } else {
                 inputGroup.style.display = "none";
             }
