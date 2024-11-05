@@ -21,13 +21,9 @@
         #content th { background-color: #4CAF50; color: white; width: 40%; }
         .form-container { display: none; margin: 20px 0; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; }
         .form-group { margin-bottom: 10px; display: flex; align-items: center; }
-        .form-group input { width: 150px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }}
-		.form-color label { font-weight: bold; color: #333; }
+        .form-group input { width: 150px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        .form-color label { font-weight: bold; color: #333; }
         .form-color input[type="color"] { border: none; width: 10px; height: 20px; border-radius: 5px; width: 77px; }
-
-		
-		
-		
         .update-button {
             padding: 5px; margin-left: 5px; background-color: #4CAF50; color: white; border: none; cursor: pointer;
         }
@@ -37,7 +33,13 @@
             background-color: #ffa500;
             color: white;
         }
-		
+        /* Dropdown styles */
+        .dropdown {
+            margin: 10px 0;
+            padding: 8px;
+            font-size: 16px;
+            width: 200px;
+        }
     </style>
 </head>
 <body>
@@ -59,45 +61,33 @@
         <button id="changeDataButton" class="button copy-button" onclick="toggleForm()">Change Data</button>
         <button class="button clear-button" onclick="clearData()">Clear Data</button>
 
-
         <!--Update Fields Individually-->
         <div class="form-container" id="formContainer">
-		 <div class="form-color">
-                Table Color : <input type="color" id="headerColor" value="#4CAF50">
+            <!-- Dropdown to choose data to update -->
+            <div class="form-group">
+                <select id="dataDropdown" class="dropdown" onchange="showInputField()">
+                    <option value="">Choose Data to Update</option>
+                    <option value="atmSn">ATM S/N</option>
+                    <option value="siteName">ATM Site Name</option>
+                    <option value="ticketNumber">Ticket Number / Offer</option>
+                    <option value="address">Address</option>
+                    <option value="partDescription">Part Description</option>
+                    <option value="partNumber">P/N</option>
+                    <option value="status">Status</option>
+                    <option value="errorDescription">Error Description</option>
+                </select>
+            </div>
+
+            <!-- Input field for the selected data -->
+            <div class="form-group" id="selectedFieldGroup" style="display: none;">
+                <input type="text" id="selectedFieldInput" placeholder="Enter new value">
+                <button class="update-button" onclick="updateField()">Update</button>
+            </div>
+
+            <!-- Table Color -->
+            <div class="form-color">
+                Table Color: <input type="color" id="headerColor" value="#4CAF50">
                 <button class="update-button" onclick="updateHeaderAndBorderColor()">Update</button>
-            </div>
-			<br>
-            <div class="form-group">
-                <input type="text" id="atmSn" placeholder="ATM S/N">
-                <button class="update-button" onclick="updateField('tableAtmSn', 'atmSn')">Update</button>
-            </div>
-            <div class="form-group">
-                <input type="text" id="siteName" placeholder="ATM Site Name">
-                <button class="update-button" onclick="updateField('tableSiteName', 'siteName')">Update</button>
-            </div>
-            <div class="form-group">
-                <input type="text" id="ticketNumber" placeholder="Ticket Number / Offer">
-                <button class="update-button" onclick="updateField('tableTicketNumber', 'ticketNumber')">Update</button>
-            </div>
-            <div class="form-group">
-                <input type="text" id="address" placeholder="Address">
-                <button class="update-button" onclick="updateField('tableAddress', 'address')">Update</button>
-            </div>
-            <div class="form-group">
-                <input type="text" id="partDescription" placeholder="Part Description">
-                <button class="update-button" onclick="updateField('tablePartDescription', 'partDescription')">Update</button>
-            </div>
-            <div class="form-group">
-                <input type="text" id="partNumber" placeholder="P/N">
-                <button class="update-button" onclick="updateField('tablePartNumber', 'partNumber')">Update</button>
-            </div>
-            <div class="form-group">
-                <input type="text" id="status" placeholder="Status">
-                <button class="update-button" onclick="updateField('tableStatus', 'status')">Update</button>
-            </div>
-            <div class="form-group">
-                <input type="text" id="errorDescription" placeholder="Error Description">
-                <button class="update-button" onclick="updateField('tableErrorDescription', 'errorDescription')">Update</button>
             </div>
         </div>
     </div>
@@ -128,7 +118,6 @@
                 const savedValue = localStorage.getItem(field);
                 if (savedValue) {
                     document.getElementById("table" + field.charAt(0).toUpperCase() + field.slice(1)).innerText = savedValue;
-                    document.getElementById(field).value = savedValue;
                 }
             });
             
@@ -141,31 +130,43 @@
             document.getElementById("changeDataButton").classList.remove("active-button");
         };
 
-        // Function to update individual field
-        function updateField(tableCellId, inputId) {
-            const tableCell = document.getElementById(tableCellId);
-            const inputField = document.getElementById(inputId);
-            const newValue = inputField.value.trim();
+        // Show input field for selected data in dropdown
+        function showInputField() {
+            const selectedField = document.getElementById("dataDropdown").value;
+            const inputGroup = document.getElementById("selectedFieldGroup");
+            if (selectedField) {
+                document.getElementById("selectedFieldInput").placeholder = `Enter new ${selectedField}`;
+                inputGroup.style.display = "block";
+                document.getElementById("selectedFieldInput").setAttribute("data-field", selectedField);
+            } else {
+                inputGroup.style.display = "none";
+            }
+        }
+
+        // Update the selected field
+        function updateField() {
+            const selectedField = document.getElementById("selectedFieldInput").getAttribute("data-field");
+            const newValue = document.getElementById("selectedFieldInput").value.trim();
             
             if (newValue) {
-                tableCell.innerText = newValue;
-                localStorage.setItem(inputId, newValue);
-                alert(inputId.charAt(0).toUpperCase() + inputId.slice(1) + " updated successfully!");
+                document.getElementById("table" + selectedField.charAt(0).toUpperCase() + selectedField.slice(1)).innerText = newValue;
+                localStorage.setItem(selectedField, newValue);
+                alert(`${selectedField} updated successfully!`);
             } else {
                 alert("Please enter a value to update.");
             }
         }
 
-        // Function to update header and border color
-        function updateHeaderAndBorderColor(color) {
-            const headerColor = color || document.getElementById("headerColor").value;
+        // Update header and border color
+        function updateHeaderAndBorderColor() {
+            const headerColor = document.getElementById("headerColor").value;
             document.querySelectorAll("#content th").forEach(th => th.style.backgroundColor = headerColor);
             document.getElementById("content").style.borderColor = headerColor;
             localStorage.setItem("headerColor", headerColor);
         }
 
         // Function to copy table content to clipboard
-       function copyContent() {
+        function copyContent() {
             var table = document.getElementById("content");
             var range = document.createRange();
             range.selectNodeContents(table); // Select the contents of the table
