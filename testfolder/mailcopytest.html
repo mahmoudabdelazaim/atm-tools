@@ -165,13 +165,14 @@
         }
 
         // Function to copy table content to clipboard
-        function copyContent() {
-            const range = document.createRange();
-            range.selectNode(document.getElementById("content"));
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-            document.execCommand("copy");
-            window.getSelection().removeAllRanges();
+       function copyContent() {
+            var table = document.getElementById("content");
+            var range = document.createRange();
+            range.selectNodeContents(table); // Select the contents of the table
+            window.getSelection().removeAllRanges(); // Clear any previous selections
+            window.getSelection().addRange(range); // Select the content
+            document.execCommand('copy'); // Copy the selected content to clipboard
+            window.getSelection().removeAllRanges(); // Deselect after copying
             alert("Table content copied to clipboard!");
         }
 
