@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Table with Customizable Border</title>
+    <style>
+        .container { margin-top: 20px; }
+        .button {
+            margin-top: 10px; padding: 10px; color: white; border: none; cursor: pointer;
+        }
+        .copy-button { background-color: #4CAF50; }
+        .copy-button:hover { background-color: #45a049; }
+        .clear-button { background-color: #f44336; }
+        .clear-button:hover { background-color: #d32f2f; }
+        #content {
+            border: 2px solid #4CAF50; padding: 10px; margin-top: 10px; width: 98%; font-size: 12px;
+            border-collapse: collapse;
+        }
+        #content th, #content td { border: 1px solid #000; padding: 8px; text-align: left; }
+        #content th { background-color: #4CAF50; color: white; width: 30%; }
+        .form-container { display: none; margin: 20px 0; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; }
+        .form-group { margin-bottom: 10px; display: flex; align-items: center; }
+        .form-group input { width: 150px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }}
+		.form-color label { font-weight: bold; color: #333; }
+        .form-color input[type="color"] { border: none; width: 10px; height: 20px; border-radius: 5px; width: 77px; }
+
+		
+		
+		
+        .update-button {
+            padding: 5px; margin-left: 5px; background-color: #4CAF50; color: white; border: none; cursor: pointer;
+        }
+        .update-button:hover { background-color: #45a049; }
+        /* Style for active "Change Data" button */
+        .active-button {
+            background-color: #ffa500;
+            color: white;
+        }
+		
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table id="content">
+            <tbody>
+                <tr><th>ATM S/N</th><td id="tableAtmSn">N/A</td></tr>
+                <tr><th>ATM Site Name</th><td id="tableSiteName">N/A</td></tr>
+                <tr><th>Ticket Number / Offer</th><td id="tableTicketNumber">N/A</td></tr>
+                <tr><th>Address</th><td id="tableAddress">N/A</td></tr>
+                <tr><th>Part Description</th><td id="tablePartDescription">N/A</td></tr>
+                <tr><th>P/N</th><td id="tablePartNumber">N/A</td></tr>
+                <tr><th>Status</th><td id="tableStatus">New</td></tr>
+                <tr><th>Error Description of Defective Part in Details</th><td id="tableErrorDescription">N/A</td></tr>
+            </tbody>
+        </table>
+
+        <button class="button copy-button" onclick="copyContent()">Copy Table to Email</button>
+        <button id="changeDataButton" class="button copy-button" onclick="toggleForm()">Change Data</button>
+        <button class="button clear-button" onclick="clearData()">Clear Data</button>
+
+
+        <!--Update Fields Individually-->
+        <div class="form-container" id="formContainer">
+		 <div class="form-color">
+                Table Color : <input type="color" id="headerColor" value="#4CAF50">
+                <button class="update-button" onclick="updateHeaderAndBorderColor()">Update</button>
+            </div>
+			<br>
+            <div class="form-group">
+                <input type="text" id="atmSn" placeholder="ATM S/N">
+                <button class="update-button" onclick="updateField('tableAtmSn', 'atmSn')">Update</button>
+            </div>
+            <div class="form-group">
+                <input type="text" id="siteName" placeholder="ATM Site Name">
+                <button class="update-button" onclick="updateField('tableSiteName', 'siteName')">Update</button>
+            </div>
+            <div class="form-group">
+                <input type="text" id="ticketNumber" placeholder="Ticket Number / Offer">
+                <button class="update-button" onclick="updateField('tableTicketNumber', 'ticketNumber')">Update</button>
+            </div>
+            <div class="form-group">
+                <input type="text" id="address" placeholder="Address">
+                <button class="update-button" onclick="updateField('tableAddress', 'address')">Update</button>
+            </div>
+            <div class="form-group">
+                <input type="text" id="partDescription" placeholder="Part Description">
+                <button class="update-button" onclick="updateField('tablePartDescription', 'partDescription')">Update</button>
+            </div>
+            <div class="form-group">
+                <input type="text" id="partNumber" placeholder="P/N">
+                <button class="update-button" onclick="updateField('tablePartNumber', 'partNumber')">Update</button>
+            </div>
+            <div class="form-group">
+                <input type="text" id="status" placeholder="Status">
+                <button class="update-button" onclick="updateField('tableStatus', 'status')">Update</button>
+            </div>
+            <div class="form-group">
+                <input type="text" id="errorDescription" placeholder="Error Description">
+                <button class="update-button" onclick="updateField('tableErrorDescription', 'errorDescription')">Update</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle form visibility and button color
+        function toggleForm() {
+            const formContainer = document.getElementById("formContainer");
+            const changeDataButton = document.getElementById("changeDataButton");
+
+            // Toggle form visibility
+            formContainer.style.display = formContainer.style.display === "block" ? "none" : "block";
+
+            // Toggle button color based on form visibility
+            if (formContainer.style.display === "block") {
+                changeDataButton.classList.add("active-button");
+            } else {
+                changeDataButton.classList.remove("active-button");
+            }
+        }
+
+        // Load data from localStorage on page load
+        window.onload = function() {
+            const fields = ["atmSn", "siteName", "ticketNumber", "address", 
+                            "partDescription", "partNumber", "status", "errorDescription"];
+            
+            fields.forEach(field => {
+                const savedValue = localStorage.getItem(field);
+                if (savedValue) {
+                    document.getElementById("table" + field.charAt(0).toUpperCase() + field.slice(1)).innerText = savedValue;
+                    document.getElementById(field).value = savedValue;
+                }
+            });
+            
+            const headerColor = localStorage.getItem("headerColor") || "#4CAF50";
+            updateHeaderAndBorderColor(headerColor);
+            document.getElementById("headerColor").value = headerColor;
+            
+            // Hide form upon page refresh
+            document.getElementById("formContainer").style.display = "none";
+            document.getElementById("changeDataButton").classList.remove("active-button");
+        };
+
+        // Function to update individual field
+        function updateField(tableCellId, inputId) {
+            const tableCell = document.getElementById(tableCellId);
+            const inputField = document.getElementById(inputId);
+            const newValue = inputField.value.trim();
+            
+            if (newValue) {
+                tableCell.innerText = newValue;
+                localStorage.setItem(inputId, newValue);
+                alert(inputId.charAt(0).toUpperCase() + inputId.slice(1) + " updated successfully!");
+            } else {
+                alert("Please enter a value to update.");
+            }
+        }
+
+        // Function to update header and border color
+        function updateHeaderAndBorderColor(color) {
+            const headerColor = color || document.getElementById("headerColor").value;
+            document.querySelectorAll("#content th").forEach(th => th.style.backgroundColor = headerColor);
+            document.getElementById("content").style.borderColor = headerColor;
+            localStorage.setItem("headerColor", headerColor);
+        }
+
+        // Function to copy table content to clipboard
+        function copyContent() {
+            const range = document.createRange();
+            range.selectNode(document.getElementById("content"));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();
+            alert("Table content copied to clipboard!");
+        }
+
+        // Function to clear data
+        function clearData() {
+            localStorage.clear();
+            document.querySelectorAll("#content td").forEach(td => td.innerText = td.id === "tableStatus" ? "New" : "N/A");
+            document.querySelectorAll(".form-group input[type='text']").forEach(input => input.value = "");
+            document.getElementById("headerColor").value = "#4CAF50";
+            updateHeaderAndBorderColor("#4CAF50");
+            alert("All data has been cleared and reset.");
+        }
+    </script>
+</body>
+</html>
