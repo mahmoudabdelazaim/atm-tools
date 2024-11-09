@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Table with Customizable Border</title>
+    <style>
+        .container { margin-top: 20px; }
+        .button { margin-top: 10px; padding: 10px; color: white; border: none; cursor: pointer; }
+        .copy-button { background-color: #4CAF50; }
+        .copy-button:hover { background-color: #45a049; }
+        .clear-button { background-color: #f44336; }
+        .clear-button:hover { background-color: #d32f2f; }
+        #content { border: 2px solid #4CAF50; padding: 5px; margin-top: 5px; width: 98%; font-size: 12px; border-collapse: collapse; }
+        #content th, #content td { border: 1px solid #000; padding: 5px; text-align: left; }
+        #content th { background-color: #4CAF50; color: white; width: 125px; }
+        .form-container { display: none; margin: 20px 0; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; }
+        .form-group { margin-bottom: 10px; display: flex; align-items: center; }
+        .form-group input { width: 150px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        .form-color label { font-weight: bold; color: #333; }
+        .form-color input[type="color"] { border: none; width: 10px; height: 20px; border-radius: 5px; width: 77px; }
+        .update-button { padding: 5px; margin-left: 5px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        .update-button:hover { background-color: #45a049; }
+        .active-button { background-color: #ffa500; color: white; }
+        .dropdown { margin: 10px 0; padding: 8px; font-size: 16px; width: 200px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <textarea readonly style="border: none; outline: none; Width: 60%;" id="tableDescription" placeholder="This is a default description. Edit as needed."></textarea>
+        
+        <table id="content">
+            <tbody>
+                <tr><th>ATM S/N</th><td class="data-cell" data-field="atmSn">N/A</td></tr>
+                <tr><th>ATM Site Name</th><td class="data-cell" data-field="siteName">N/A</td></tr>
+                <tr><th>Ticket Number / Offer</th><td class="data-cell" data-field="ticketNumber">N/A</td></tr>
+                <tr><th>Address</th><td class="data-cell" data-field="address">N/A</td></tr>
+                <tr><th>Part Description</th><td class="data-cell" data-field="partDescription">N/A</td></tr>
+                <tr><th>P/N</th><td class="data-cell" data-field="partNumber">N/A</td></tr>
+                <tr><th>Status</th><td class="data-cell" data-field="status">New</td></tr>
+                <tr><th>Error Description of Defective Part in Details</th><td class="data-cell" data-field="errorDescription">N/A</td></tr>
+            </tbody>
+        </table>
+
+        <button class="button copy-button" id="copyButton" onclick="copyContent()">Copy to Email</button>
+        <button id="changeDataButton" class="button copy-button" onclick="toggleForm()">Change Data</button>
+        <button class="button clear-button" onclick="clearData()">Clear Data</button>
+
+        <div class="form-container" id="formContainer">
+            <div class="form-group">
+                <select id="dataDropdown" class="dropdown" onchange="showInputField()">
+                    <option value="">Choose Data to Update</option>
+                    <option value="description">Description</option>
+                    <option value="atmSn">ATM S/N</option>
+                    <option value="siteName">ATM Site Name</option>
+                    <option value="ticketNumber">Ticket Number / Offer</option>
+                    <option value="address">Address</option>
+                    <option value="partDescription">Part Description</option>
+                    <option value="partNumber">P/N</option>
+                    <option value="status">Status</option>
+                    <option value="errorDescription">Error Description</option>
+                </select>
+            </div>
+            <div class="form-group" id="selectedFieldGroup" style="display: none;">
+                <textarea id="selectedFieldInput" placeholder="Enter new value"  onchange="updateField()"></textarea>
+
+            </div>
+            <div class="form-group form-color">
+                <label>Table & Header Color:</label>
+                <input type="color" id="tableHeaderColorInput" onchange="updateTableAndHeaderColor()" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("tableDescription").value = localStorage.getItem("description") || "This is a default description. Edit as needed.";
+            document.querySelectorAll(".data-cell").forEach(cell => {
+                const field = cell.getAttribute("data-field");
+                const savedValue = localStorage.getItem(field);
+                if (savedValue) cell.textContent = savedValue;
+            });
+
+            const savedColor = localStorage.getItem("tableHeaderColor") || "#4CAF50";
+            document.getElementById("content").style.borderColor = savedColor;
+            document.querySelectorAll("#content th").forEach(th => th.style.backgroundColor = savedColor);
+            document.getElementById("tableHeaderColorInput").value = savedColor;
+        });
+
+        function toggleForm() {
+            const formContainer = document.getElementById("formContainer");
+            const changeDataButton = document.getElementById("changeDataButton");
+            formContainer.style.display = formContainer.style.display === "block" ? "none" : "block";
+            changeDataButton.classList.toggle("active-button", formContainer.style.display === "block");
+        }
+
+        function showInputField() {
+            const selectedField = document.getElementById("dataDropdown").value;
+            const inputGroup = document.getElementById("selectedFieldGroup");
+            const selectedInput = document.getElementById("selectedFieldInput");
+
+            if (selectedField) {
+                selectedInput.placeholder = `Enter new ${selectedField}`;
+                selectedInput.value = selectedField === "description" 
+                    ? document.getElementById("tableDescription").value 
+                    : document.querySelector(`.data-cell[data-field="${selectedField}"]`).textContent;
+                inputGroup.style.display = "block";
+                selectedInput.setAttribute("data-field", selectedField);
+            } else {
+                inputGroup.style.display = "none";
+            }
+        }
+
+        function updateField() {
+            const selectedField = document.getElementById("selectedFieldInput").getAttribute("data-field");
+            const newValue = document.getElementById("selectedFieldInput").value.trim();
+            
+            if (selectedField && newValue) {
+                if (selectedField === "description") {
+                    document.getElementById("tableDescription").value = newValue;
+                } else {
+                    document.querySelector(`.data-cell[data-field="${selectedField}"]`).textContent = newValue;
+                }
+                localStorage.setItem(selectedField, newValue);
+            }
+        }
+
+        function updateTableAndHeaderColor() {
+            const color = document.getElementById("tableHeaderColorInput").value;
+            document.getElementById("content").style.borderColor = color;
+            document.querySelectorAll("#content th").forEach(th => th.style.backgroundColor = color);
+            localStorage.setItem("tableHeaderColor", color);
+        }
+
+        function copyContent() {
+            const description = document.getElementById("tableDescription").value;
+            const table = document.getElementById("content");
+            const range = document.createRange();
+            const selection = window.getSelection();
+
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = `<p>${description.replace(/\n/g, "<br>")}</p>` + table.outerHTML;
+            document.body.appendChild(tempDiv);
+
+            range.selectNodeContents(tempDiv);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand('copy');
+
+            selection.removeAllRanges();
+            document.body.removeChild(tempDiv);
+
+            alert("Copied to clipboard!");
+        }
+
+        function clearData() {
+            const userConfirmed = confirm("Are you sure you want to clear all data? This action cannot be undone.");
+            if (userConfirmed) {
+                localStorage.clear();
+                document.querySelectorAll(".data-cell").forEach(td => td.textContent = td.getAttribute("data-field") === "status" ? "New" : "N/A");
+                document.getElementById("tableDescription").value = "This is a default description. Edit as needed.";
+                document.getElementById("content").style.borderColor = "#4CAF50";
+                document.querySelectorAll("#content th").forEach(th => th.style.backgroundColor = "#4CAF50");
+                alert("Data has been cleared.");
+            } else {
+                alert("Clear data action canceled.");
+            }
+        }
+    </script>
+</body>
+</html>
