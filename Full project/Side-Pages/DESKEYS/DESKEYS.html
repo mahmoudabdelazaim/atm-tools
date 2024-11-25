@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>DESKEYS</title></head><link rel="icon" type="image/x-icon" href="../../Local-IMG/ATM-Logo.png">
+<body>
+<!-- Loader element -->												<div id="loader"><div class="loader"></div></div> 
+<!-- Password Form shows only once untill user delete coockies -->	<div id="password-container"><table border="0" Width="100%" style="padding: 30px; color: #ffffff; background:#000000;"><tr><td><!--this divs to make count doun circle bar works correctly--><div id="password-input"></div><div id="submit-password"></div><div id="error-message"></div><!--this divs to make count doun circle bar works correctly-->Go To Home Page To Sign in</td><td><a href="../../index.html" class="home-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a></td></tr></table></div>
+<!--Full page protected Content-->									<div id="protected-content">
+<!--Page Header Contents-->		<div align="center" style="background: #232b2b;"><table border="0" Width="100%" style="padding: 0px; color: #ffffff;"><tr><td width="1px"><a href="../../index.html" class="home-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a></td><td align="center">DESKEYS</td><td width="1px">
+<!--Header redirectiong countdown circle-->  <div id="progress-container"><svg class="progress-ring" width="32" height="32" style="background: #232b2b;"><circle class="progress-ring__circle" cx="16" cy="16" r="15"></circle></svg></div></td></tr></table></div>
+   
+
+<!--Content-->
+
+
+
+
+<!-- Footer -->		<footer id="footer"><p>&copy; 2024 All Rights Reserved.</p></footer>
+<!--END OF Full page protected Content-->		</div>	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>/*page structure*/
+/*CSS styles                              */const styles = `
+/* Scrollbar styles                       */ ::-webkit-scrollbar { width: 1px; /* Width of the vertical scrollbar */ height: 1px; /* Height of the horizontal scrollbar */ }
+/* Reset styles                           */ * { margin: 0; padding: 0; } body { font-family: 'Poppins', sans-serif; background: #f4f4f9; color: #333; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+/* Preload animation                      */
+/* Loader styles                          */   #loader { position: fixed; inset: 0; background: #000000; display: flex; justify-content: center; align-items: center; z-index: 9999; animation: fadeOut 1s ease forwards; /* Default animation applied */} .loader { width: 60px; height: 60px; display: grid; } .loader:before, .loader:after { content: ""; grid-area: 1/1; background: #232b2b; clip-path: polygon(0 0,100% 0,100% 100%,75% 25%,0 0,0 100%,100% 100%,25% 75%,0 0); animation: l20 1.5s infinite linear; } .loader:after { clip-path: polygon(0 0,76% 24%,100% 100%,24% 76%); --s:0; } @keyframes l20 { 0%      {transform: perspective(100px) rotate3d(1,var(--s,1),0,0)      }  25%     {transform: perspective(100px) rotate3d(1,var(--s,1),0,-90deg) } 25.01%  {transform: perspective(100px) rotate3d(1,var(--s,1),0,-90deg) }  40%,60% {transform: perspective(100px) rotate3d(1,var(--s,1),0,-180deg)}  75%     {transform: perspective(100px) rotate3d(1,var(--s,1),0,-270deg)} 75.01%  {transform: perspective(100px) rotate3d(1,var(--s,1),0,-270deg)}  90%,100%{transform: perspective(100px) rotate3d(1,var(--s,1),0,-360deg)} }
+/* Fade-out in animation                  */  @keyframes fadeOut { 0%   {opacity: 1; visibility: visible;} 100% { opacity: 0; visibility: hidden; }}
+/* home button                            */ .home-button { display: flex; align-items: center; justify-content: center; text-decoration: none;} .home-button svg { margin-right: 8px; margin-left: 8px; margin-top: 0px; margin-bottom: 0px; fill: #ffffff; width: 40px; height: 40px; }
+/* Footer styles                          */ footer { position: fixed; bottom: 0; left: 0; width: 100%; padding: 1px; background-color: #232b2b; color: #888; text-align: center; border-top: 1px solid #ddd; font-size: 14px; }
+/* Protected content and error message    */ #protected-content, #error-message { display: none; width: 100%; height: 100vh; } #password-container { height: 100vh; }
+/*count down circle progress bar          */    .progress-ring__circle { fill: transparent; stroke: #4caf50; stroke-width: 2; transition: stroke-dashoffset 1s; transform: rotate(-90deg); transform-origin: 50% 50%;}
+/*END of CSS styles                       */`;
+/*JS Code To Apply styles                 */  const styleSheet = document.createElement("style"); styleSheet.type = "text/css"; styleSheet.innerText = styles; document.head.appendChild(styleSheet);
+/*Variable can be changed by Developer    */
+/*Local Variables                         */ const loaderDuration = 1000; const correctPassword = "123";
+/*circle redirection countdown Variable   */document.addEventListener('DOMContentLoaded', () => { const redirectAfter = 50; /*Time in seconds */ const redirectUrl = "../../index.html"; /*Target URL*/ const showCountdown = true; /* Developer toggle (true to show, false to hide)*/ /*mathimatical function        */const circle = document.querySelector('.progress-ring__circle'); const radius = circle.r.baseVal.value; const circumference = 2 * Math.PI * radius; circle.style.strokeDasharray = `${circumference} ${circumference}`; circle.style.strokeDashoffset = circumference; if (!localStorage.getItem('countdown')) { localStorage.setItem('countdown', redirectAfter); } let timer = parseInt(localStorage.getItem('countdown'), 10); /*set progress function        */function setProgress(value) { const offset = circumference - (value / redirectAfter) * circumference; circle.style.strokeDashoffset = offset; } if (!showCountdown) { document.getElementById('progress-container').style.display = 'none'; } const interval = setInterval(() => { timer--; if (showCountdown) { setProgress(timer); } localStorage.setItem('countdown', timer); if (timer <= 0) { clearInterval(interval); localStorage.removeItem('countdown'); /* Clean up storage*/ window.location.href = redirectUrl; /* Redirect */ } }, 1000); /* Reset timer on page refresh */window.addEventListener('beforeunload', () => { localStorage.removeItem('countdown'); }); });
+/* Password protection                    */const passwordInput = document.getElementById('password-input'); const showProtectedContent = () => { document.getElementById('password-container').style.display = 'none'; document.getElementById('protected-content').style.display = 'block'; }; if (localStorage.getItem("unlocked")) showProtectedContent(); document.getElementById('submit-password').addEventListener('click', () => { if (passwordInput.value === correctPassword) { localStorage.setItem("unlocked", true); showProtectedContent();} else { document.getElementById('error-message').style.display = 'block';}});
+/*preloade Loader                         */const loader = document.getElementById('loader'); const content = document.getElementById('protected-content');
+/* Hide loader with fade-out animation    */window.addEventListener("load", () => { loader.classList.add('hidden'); /* Trigger fade-out animation*/ setTimeout(() => { loader.style.display = 'none'; /* Remove loader from the DOM*/ content.style.display = 'block'; /* Show main content*/ }, loaderDuration); /* Match the animation duration */});
+</script>
